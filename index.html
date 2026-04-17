@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noor Finance — Islamic Finance Blog</title>
+  <meta name="description" content="Clear guidance on halal and haram financial practices. Explore Islamic finance, investments, banking, and more." />
+  
+  <!-- Google Fonts: Playfair Display (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <script data-arena-recording="true">(function(){
+"use strict";
+var SK="__arena_rec",RRWEB_CDN="https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js";
+var MAX_RECORDING_MS=600000,MAX_RRWEB_EVENTS=30000,MAX_INTERACTIONS=5000,MAX_CURSOR_POINTS=10000,recStopped=false;
+var stored=null;try{var raw=sessionStorage.getItem(SK);if(raw)stored=JSON.parse(raw);}catch(ex){}
+var meta=stored?stored.m||null:null,rrwebEvents=stored?stored.r||[]:[],rrwebStarted=false,startTime=stored?stored.st||Date.now():Date.now();
+var interactions=stored?stored.i||[]:[],cursorPath=stored?stored.c||[]:[],lastCursorSample=0,lastScrollSample=0;
+var pageHeight=document.documentElement.scrollHeight;
+var viewport={width:window.innerWidth,height:window.innerHeight};
+function isCapped(){if(recStopped)return true;if(Date.now()-startTime>=MAX_RECORDING_MS){recStopped=true;return true;}return false;}
+function persist(){try{var d=JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime});sessionStorage.setItem(SK,d);}catch(ex){rrwebEvents=rrwebEvents.slice(Math.floor(rrwebEvents.length/2));try{sessionStorage.setItem(SK,JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime}));}catch(ex2){}}}
+setInterval(persist,5000);
+window.addEventListener("resize",function(){viewport={width:window.innerWidth,height:window.innerHeight};pageHeight=document.documentElement.scrollHeight;});
+document.addEventListener("click",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var el=e.target;var tag=el.tagName?el.tagName.toLowerCase():"";var text=(el.textContent||"").trim().substring(0,80);var classes=el.className&&typeof el.className==="string"?el.className.substring(0,120):"";interactions.push({type:"click",t:Date.now()-startTime,x:Math.round(e.clientX),y:Math.round(e.clientY),element:{tag:tag,text:text,classes:classes}});},true);
+window.addEventListener("scroll",function(){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var now=Date.now();if(now-lastScrollSample<200)return;lastScrollSample=now;var scrollY=Math.round(window.scrollY||window.pageYOffset||0);var depthPct=pageHeight>viewport.height?Math.min(100,Math.round(((scrollY+viewport.height)/pageHeight)*100)):100;interactions.push({type:"scroll",t:now-startTime,y:scrollY,depth_pct:depthPct});},{passive:true});
+document.addEventListener("mousemove",function(e){if(isCapped()||cursorPath.length>=MAX_CURSOR_POINTS)return;var now=Date.now();if(now-lastCursorSample<250)return;lastCursorSample=now;cursorPath.push([Math.round(e.clientX),Math.round(e.clientY),now-startTime]);},{passive:true});
+document.addEventListener("keydown",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"))return;interactions.push({type:"keydown",t:Date.now()-startTime,key:e.key});},true);
+function buildAnalytics(){if(!meta)return null;var ph=document.documentElement.scrollHeight;var maxScroll=0,clickElements={},firstClick=null,firstScroll=null,totalDistance=0;for(var i=0;i<interactions.length;i++){var ev=interactions[i];if(ev.type==="scroll"){if(ev.depth_pct>maxScroll)maxScroll=ev.depth_pct;if(!firstScroll)firstScroll=ev.t;}if(ev.type==="click"){if(!firstClick)firstClick=ev.t;var key=ev.element.tag+":"+ev.element.text.substring(0,30);clickElements[key]=true;}}for(var j=1;j<cursorPath.length;j++){var dx=cursorPath[j][0]-cursorPath[j-1][0];var dy=cursorPath[j][1]-cursorPath[j-1][1];totalDistance+=Math.sqrt(dx*dx+dy*dy);}var duration=Date.now()-startTime;var clickHeatmap=[];for(var k=0;k<interactions.length;k++){if(interactions[k].type==="click")clickHeatmap.push([interactions[k].x,interactions[k].y]);}return{generation_id:meta.generationId,tournament_id:meta.tournamentId,started_at:new Date(startTime).toISOString(),ended_at:new Date().toISOString(),duration_ms:duration,viewport:viewport,page_height:ph,interactions:interactions,cursor_path:cursorPath,click_heatmap:clickHeatmap,summary:{total_clicks:clickHeatmap.length,total_scrolls:interactions.filter(function(e){return e.type==="scroll";}).length,max_scroll_depth_pct:maxScroll,unique_elements_clicked:Object.keys(clickElements).length,time_to_first_click_ms:firstClick,time_to_first_scroll_ms:firstScroll,cursor_distance_px:Math.round(totalDistance),active_time_ms:duration}};}
+function loadRrweb(){if(rrwebStarted)return;rrwebStarted=true;var s=document.createElement("script");s.src=RRWEB_CDN;s.onload=function(){var rec=(window.rrweb&&window.rrweb.record)||window.rrwebRecord;if(!rec)return;rec({emit:function(event){if(rrwebEvents.length>=MAX_RRWEB_EVENTS||isCapped())return;rrwebEvents.push(event);}});};s.onerror=function(){};document.head.appendChild(s);}
+window.addEventListener("message",function(e){if(!e.data||typeof e.data.type!=="string")return;if(e.data.type==="arena:init"){if(!meta)startTime=Date.now();meta={generationId:e.data.generationId||e.data.modelId,tournamentId:e.data.tournamentId};persist();loadRrweb();if(e.source)e.source.postMessage({type:"arena:init-ack",generationId:meta.generationId},"*");}if(e.data.type==="arena:flush"){var resp={type:"arena:recording-data",generationId:meta?meta.generationId:null,rrwebEvents:rrwebEvents,analytics:buildAnalytics()};try{sessionStorage.removeItem(SK);}catch(ex){}if(e.source)e.source.postMessage(resp,"*");}});
+loadRrweb();
+})();</script>
+  <script data-arena-views="true">(function(){var isTop=false;try{isTop=window.self===window.top;}catch(e){}if(!isTop)return;window.__ARENA_META={generationId:"glm-5.1",tournamentId:"af5262e4-bfbb-431d-a479-047036d937ac"};var payload={tournamentId:"af5262e4-bfbb-431d-a479-047036d937ac",modelId:"glm-5.1"};try{var r=document.referrer;if(r){var u=new URL(r);payload.referrerDomain=u.hostname;}}catch(e){}try{var vid=null;try{vid=localStorage.getItem('arena_vid');}catch(e){}if(!vid){vid=typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,32);try{localStorage.setItem('arena_vid',vid);}catch(e){}}if(vid)payload.viewerId=vid;}catch(e){}try{fetch("https://www.designarena.ai/api/agon/page-views",{"method":"POST","headers":{"Content-Type":"application/json"},"body":JSON.stringify(payload),"keepalive":true});}catch(e){}})();</script>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-container">
+      <!-- Logo -->
+      <a href="#" class="nav-logo" id="navLogo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Noor<span class="logo-accent">Finance</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#featured" class="nav-link" data-section="featured">Featured</a></li>
+        <li><a href="#categories" class="nav-link" data-section="categories">Categories</a></li>
+        <li><a href="#latest" class="nav-link" data-section="latest">Latest</a></li>
+      </ul>
+
+      <!-- Search + Mobile Toggle -->
+      <div class="nav-actions">
+        <button class="search-btn" id="searchBtn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-nav-links">
+        <li><a href="#home" class="mobile-nav-link" data-section="home">Home</a></li>
+        <li><a href="#featured" class="mobile-nav-link" data-section="featured">Featured</a></li>
+        <li><a href="#categories" class="mobile-nav-link" data-section="categories">Categories</a></li>
+        <li><a href="#latest" class="mobile-nav-link" data-section="latest">Latest</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============================================
+       SEARCH OVERLAY
+       ============================================ -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <button class="search-close" id="searchClose" aria-label="Close search">&times;</button>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." autocomplete="off" />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       HOME VIEW
+       ============================================ -->
+  <main class="home-view" id="homeView">
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-badge">Islamic Finance</div>
+        <h1 class="hero-title">Understanding Halal Finance<br/>in Modern Life</h1>
+        <p class="hero-subtitle">Clear guidance on halal and haram financial practices — rooted in scholarship, relevant for today.</p>
+        <div class="hero-actions">
+          <a href="#featured" class="btn btn-primary">Explore Articles</a>
+          <a href="#categories" class="btn btn-outline">Browse Topics</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Articles</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Scholars</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Topics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Articles Section -->
+    <section class="section featured-section" id="featured">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Featured</span>
+          <h2 class="section-title">Editor's Picks</h2>
+          <p class="section-desc">Hand-selected articles to deepen your understanding of Islamic finance.</p>
+        </div>
+        <div class="featured-grid">
+
+          <!-- Featured Card 1 — Large -->
+          <article class="featured-card featured-card-large" data-article="0" data-category="crypto">
+            <div class="featured-card-image" style="background: linear-gradient(135deg, #1B5E3B 0%, #0d3321 100%);">
+              <div class="card-pattern"></div>
+              <div class="featured-card-badge">Crypto</div>
+            </div>
+            <div class="featured-card-body">
+              <h3 class="featured-card-title">Is Cryptocurrency Halal? A Scholarly Perspective</h3>
+              <p class="featured-card-excerpt">An in-depth analysis of digital currencies through the lens of Islamic jurisprudence, examining the key conditions that determine permissibility.</p>
+              <div class="featured-card-meta">
+                <span class="meta-author">Dr. Aisha Al-Rashid</span>
+                <span class="meta-dot">·</span>
+                <span class="meta-date">Dec 15, 2024</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Featured Card 2 -->
+          <article class="featured-card" data-article="1" data-category="halal-haram">
+            <div class="featured-card-image" style="background: linear-gradient(135deg, #C9A84C 0%, #8B6914 100%);">
+              <div class="card-pattern"></div>
+              <div class="featured-card-badge">Halal vs Haram</div>
+            </div>
+            <div class="featured-card-body">
+              <h3 class="featured-card-title">Understanding Riba: Why Interest is Prohibited</h3>
+              <p class="featured-card-excerpt">A comprehensive guide to the concept of riba and its implications in modern financial systems.</p>
+              <div class="featured-card-meta">
+                <span class="meta-author">Sheikh Yusuf Ibrahim</span>
+                <span class="meta-dot">·</span>
+                <span class="meta-date">Dec 10, 2024</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Featured Card 3 -->
+          <article class="featured-card" data-article="2" data-category="investments">
+            <div class="featured-card-image" style="background: linear-gradient(135deg, #2E7D52 0%, #1a4d32 100%);">
+              <div class="card-pattern"></div>
+              <div class="featured-card-badge">Investments</div>
+            </div>
+            <div class="featured-card-body">
+              <h3 class="featured-card-title">Halal Investment Portfolios: Building Wealth the Right Way</h3>
+              <p class="featured-card-excerpt">Practical steps to construct a Shariah-compliant investment portfolio that aligns with your values.</p>
+              <div class="featured-card-meta">
+                <span class="meta-author">Fatima Al-Zahra</span>
+                <span class="meta-dot">·</span>
+                <span class="meta-date">Dec 5, 2024</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section categories-section" id="categories">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Topics</span>
+          <h2 class="section-title">Explore by Category</h2>
+          <p class="section-desc">Find articles organized by the topics that matter most to your financial journey.</p>
+        </div>
+        <div class="categories-grid">
+          <button class="category-card" data-category="halal-haram">
+            <div class="category-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="category-name">Halal vs Haram</h3>
+            <p class="category-count">12 articles</p>
+          </button>
+          <button class="category-card" data-category="investments">
+            <div class="category-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="category-name">Investments</h3>
+            <p class="category-count">9 articles</p>
+          </button>
+          <button class="category-card" data-category="banking">
+            <div class="category-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="12" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <h3 class="category-name">Banking & Loans</h3>
+            <p class="category-count">8 articles</p>
+          </button>
+          <button class="category-card" data-category="crypto">
+            <div class="category-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <h3 class="category-name">Crypto</h3>
+            <p class="category-count">6 articles</p>
+          </button>
+          <button class="category-card" data-category="zakat">
+            <div class="category-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3 class="category-name">Zakat & Charity</h3>
+            <p class="category-count">7 articles</p>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Articles Section -->
+    <section class="section latest-section" id="latest">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Recent</span>
+          <h2 class="section-title">Latest Articles</h2>
+          <p class="section-desc">Stay informed with the newest insights in Islamic finance.</p>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-bar" id="filterBar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="halal-haram">Halal vs Haram</button>
+          <button class="filter-btn" data-filter="investments">Investments</button>
+          <button class="filter-btn" data-filter="banking">Banking & Loans</button>
+          <button class="filter-btn" data-filter="crypto">Crypto</button>
+          <button class="filter-btn" data-filter="zakat">Zakat & Charity</button>
+        </div>
+
+        <!-- Articles List -->
+        <div class="articles-list" id="articlesList">
+
+          <article class="article-row" data-article="3" data-category="banking">
+            <div class="article-row-number">01</div>
+            <div class="article-row-content">
+              <span class="article-row-tag">Banking & Loans</span>
+              <h3 class="article-row-title">Islamic Banking vs Conventional Banking: Key Differences</h3>
+              <p class="article-row-excerpt">Understanding the fundamental distinctions between profit-and-loss sharing models and interest-based systems.</p>
+              <div class="article-row-meta">
+                <span>Dr. Omar Hassan</span>
+                <span class="meta-dot">·</span>
+                <span>Nov 28, 2024</span>
+                <span class="meta-dot">·</span>
+                <span>8 min read</span>
+              </div>
+            </div>
+            <div class="article-row-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </article>
+
+          <article class="article-row" data-article="4" data-category="zakat">
+            <div class="article-row-number">02</div>
+            <div class="article-row-content">
+              <span class="article-row-tag">Zakat & Charity</span>
+              <h3 class="article-row-title">Zakat on Stocks: How to Calculate Your Obligation</h3>
+              <p class="article-row-excerpt">A step-by-step guide to determining zakat on your stock investments and equity holdings.</p>
+              <div class="article-row-meta">
+                <span>Prof. Layla Mahmoud</span>
+                <span class="meta-dot">·</span>
+                <span>Nov 22, 2024</span>
+                <span class="meta-dot">·</span>
+                <span>6 min read</span>
+              </div>
+            </div>
+            <div class="article-row-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </article>
+
+          <article class="article-row" data-article="5" data-category="halal-haram">
+            <div class="article-row-number">03</div>
+            <div class="article-row-content">
+              <span class="article-row-tag">Halal vs Haram</span>
+              <h3 class="article-row-title">Is Day Trading Halal? What Scholars Say</h3>
+              <p class="article-row-excerpt">Examining the permissibility of day trading and short-term speculation under Islamic law.</p>
+              <div class="article-row-meta">
+                <span>Sheikh Yusuf Ibrahim</span>
+                <span class="meta-dot">·</span>
+                <span>Nov 18, 2024</span>
+                <span class="meta-dot">·</span>
+                <span>7 min read</span>
+              </div>
+            </div>
+            <div class="article-row-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </article>
+
+          <article class="article-row" data-article="6" data-category="investments">
+            <div class="article-row-number">04</div>
+            <div class="article-row-content">
+              <span class="article-row-tag">Investments</span>
+              <h3 class="article-row-title">Mudarabah and Musharakah: Partnership Financing Explained</h3>
+              <p class="article-row-excerpt">A deep dive into the two primary profit-sharing models that form the backbone of Islamic finance.</p>
+              <div class="article-row-meta">
+                <span>Dr. Aisha Al-Rashid</span>
+                <span class="meta-dot">·</span>
+                <span>Nov 12, 2024</span>
+                <span class="meta-dot">·</span>
+                <span>10 min read</span>
+              </div>
+            </div>
+            <div class="article-row-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </article>
+
+          <article class="article-row" data-article="7" data-category="banking">
+            <div class="article-row-number">05</div>
+            <div class="article-row-content">
+              <span class="article-row-tag">Banking & Loans</span>
+              <h3 class="article-row-title">Halal Mortgages: Your Guide to Islamic Home Financing</h3>
+              <p class="article-row-excerpt">Exploring Murabaha, Ijara, and diminishing Musharakah models for purchasing a home without interest.</p>
+              <div class="article-row-meta">
+                <span>Fatima Al-Zahra</span>
+                <span class="meta-dot">·</span>
+                <span>Nov 5, 2024</span>
+                <span class="meta-dot">·</span>
+                <span>9 min read</span>
+              </div>
+            </div>
+            <div class="article-row-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </article>
+
+          <article class="article-row" data-article="8" data-category="crypto">
+            <div class="article-row-number">06</div>
+            <div class="article-row-content">
+              <span class="article-row-tag">Crypto</span>
+              <h3 class="article-row-title">The Ethics of Islamic Finance in Modern Markets</h3>
+              <p class="article-row-excerpt">How Islamic ethical frameworks can guide responsible participation in today's complex financial landscape.</p>
+              <div class="article-row-meta">
+                <span>Dr. Omar Hassan</span>
+                <span class="meta-dot">·</span>
+                <span>Oct 30, 2024</span>
+                <span class="meta-dot">·</span>
+                <span>7 min read</span>
+              </div>
+            </div>
+            <div class="article-row-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section newsletter-section">
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="newsletter-pattern"></div>
+          <div class="newsletter-content">
+            <h2 class="newsletter-title">Stay Guided</h2>
+            <p class="newsletter-desc">Get weekly insights on halal finance delivered to your inbox. No spam, just knowledge.</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="email" class="newsletter-input" placeholder="Enter your email" required />
+              <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       ARTICLE VIEW (hidden by default)
+       ============================================ -->
+  <article class="article-view" id="articleView">
+    <div class="container">
+      
+      <!-- Back Button -->
+      <button class="article-back" id="articleBack">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back to Articles</span>
+      </button>
+
+      <!-- Article Header -->
+      <header class="article-header">
+        <span class="article-tag" id="articleTag">Crypto</span>
+        <h1 class="article-title" id="articleTitle">Is Cryptocurrency Halal? A Scholarly Perspective</h1>
+        <div class="article-meta" id="articleMeta">
+          <div class="article-author-info">
+            <div class="author-avatar" id="articleAuthorAvatar">A</div>
+            <div>
+              <span class="article-author" id="articleAuthor">Dr. Aisha Al-Rashid</span>
+              <span class="article-date" id="articleDate">December 15, 2024 · 12 min read</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Article Body (dynamically populated) -->
+      <div class="article-body" id="articleBody">
+        <!-- Content injected by JS -->
+      </div>
+
+      <!-- References -->
+      <div class="article-references" id="articleReferences">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Related Articles -->
+      <div class="related-section">
+        <h2 class="related-title">Related Articles</h2>
+        <div class="related-grid" id="relatedArticles">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">Noor<span class="logo-accent">Finance</span></span>
+          </a>
+          <p class="footer-desc">Providing clear, scholarly guidance on Islamic finance for the modern Muslim.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4 class="footer-heading">Topics</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-category="halal-haram">Halal vs Haram</a></li>
+            <li><a href="#" data-category="investments">Investments</a></li>
+            <li><a href="#" data-category="banking">Banking & Loans</a></li>
+            <li><a href="#" data-category="crypto">Crypto</a></li>
+            <li><a href="#" data-category="zakat">Zakat & Charity</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4 class="footer-heading">About</h4>
+          <ul class="footer-links">
+            <li><a href="#">Our Scholars</a></li>
+            <li><a href="#">Methodology</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 NoorFinance. All rights reserved. Content reviewed by qualified Islamic scholars.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>

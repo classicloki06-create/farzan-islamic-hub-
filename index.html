@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halal Finance Hub — Understanding Halal Finance in Modern Life</title>
-  <meta name="description" content="Clear guidance on what is halal and haram in finance. Expert articles on Islamic banking, investments, cryptocurrency, zakat, and more.">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Halal Finance Hub — Islamic Finance Guidance for Modern Life</title>
+  <meta name="description" content="Clear, scholarly guidance on halal and haram in modern finance. From investments and crypto to mortgages and zakat." />
+  <meta name="theme-color" content="#1a4731" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-  <!-- ====== NAVBAR ====== -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="navbar-logo">
-        <span class="logo-icon">H</span>
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Halal Finance Hub Home">
+        <div class="nav-logo-icon" aria-hidden="true">☽</div>
         Halal Finance Hub
       </a>
-      <div class="navbar-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#latest">Latest</a>
-        <a href="#about">About</a>
-      </div>
-      <button class="navbar-toggle" aria-label="Toggle navigation">
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="#categories" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'}); return false;">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#newsletter" class="nav-cta" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'}); return false;">Subscribe</a></li>
+      </ul>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -30,95 +33,245 @@
     </div>
   </nav>
 
-  <!-- ====== HERO ====== -->
-  <section class="hero">
+  <!-- ============ HERO ============ -->
+  <header class="hero" role="banner">
+    <div class="hero-pattern" aria-hidden="true"></div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        Islamic Finance · Shariah-Compliant Guidance
+      </div>
+
+      <h1>Understanding <em>Halal Finance</em><br>in Modern Life</h1>
+
+      <p class="hero-subtitle">
+        Clear, scholarly guidance on what is halal and haram in finance — covering investments, banking, crypto, zakat, and everyday money decisions.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#featured" class="btn btn-primary"
+           onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'}); return false;">
+          Explore Articles
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="#categories" class="btn btn-outline"
+           onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'}); return false;">
+          Browse Categories
+        </a>
+      </div>
+
+      <div class="hero-stats" aria-label="Site statistics">
+        <div class="hero-stat">
+          <div class="hero-stat-number" id="stat-articles">8+</div>
+          <div class="hero-stat-label">Articles</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">5</div>
+          <div class="hero-stat-label">Categories</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">100%</div>
+          <div class="hero-stat-label">Scholar-Backed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">Free</div>
+          <div class="hero-stat-label">Always</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ FEATURED ARTICLES ============ -->
+  <section class="section" id="featured" aria-labelledby="featured-heading">
     <div class="container">
-      <span class="hero-badge">Islamic Finance Education</span>
-      <h1>Understanding Halal Finance in Modern Life</h1>
-      <p>Clear guidance on what is halal and haram in finance — backed by scholarly references and practical insight.</p>
-      <a href="#featured" class="hero-cta">
-        Explore Articles <span class="arrow">→</span>
-      </a>
+      <div class="section-header animate-on-scroll">
+        <div>
+          <span class="section-tag">Editor's Picks</span>
+          <h2 class="section-title" id="featured-heading">Featured Articles</h2>
+        </div>
+        <a href="#latest-section" class="section-link"
+           onclick="document.getElementById('latest-section').scrollIntoView({behavior:'smooth'}); return false;">
+          View all articles →
+        </a>
+      </div>
+
+      <div class="featured-grid animate-on-scroll" id="featured-articles" role="list">
+        <!-- Rendered by JavaScript -->
+        <div style="grid-column:1/-1; padding:40px; text-align:center; color:var(--color-text-muted);">
+          Loading featured articles...
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ====== FEATURED ARTICLES ====== -->
-  <section class="featured-section" id="featured">
+  <!-- ============ CATEGORIES ============ -->
+  <section class="section section-alt" id="categories" aria-labelledby="categories-heading">
     <div class="container">
-      <div class="section-header">
-        <span class="section-label">Editor's Picks</span>
-        <h2 class="section-title">Featured Articles</h2>
-        <p class="section-subtitle">Hand-picked articles to help you navigate the most important topics in Islamic finance.</p>
-        <div class="section-divider"></div>
+      <div class="section-header animate-on-scroll">
+        <div>
+          <span class="section-tag">Explore by Topic</span>
+          <h2 class="section-title" id="categories-heading">Browse Categories</h2>
+        </div>
       </div>
-      <div class="featured-grid" id="featured-articles">
-        <!-- Rendered by JS -->
+
+      <div class="categories-grid animate-on-scroll" id="categories-grid" role="list">
+        <!-- Rendered by JavaScript -->
       </div>
     </div>
   </section>
 
-  <!-- ====== CATEGORIES ====== -->
-  <section class="categories-section" id="categories">
+  <!-- ============ LATEST ARTICLES ============ -->
+  <section class="section" id="latest-section" aria-labelledby="latest-heading">
     <div class="container">
-      <div class="section-header">
-        <span class="section-label">Browse by Topic</span>
-        <h2 class="section-title">Categories</h2>
-        <p class="section-subtitle">Find articles organized by the topics that matter most to you.</p>
-        <div class="section-divider"></div>
+      <div class="section-header animate-on-scroll">
+        <div>
+          <span class="section-tag">Knowledge Library</span>
+          <h2 class="section-title" id="latest-heading">Latest Articles</h2>
+        </div>
       </div>
-      <div class="categories-grid" id="categories-grid">
-        <!-- Rendered by JS -->
+
+      <!-- Filter Bar -->
+      <div class="filter-bar animate-on-scroll" role="group" aria-label="Filter articles by category">
+        <button class="filter-btn active" data-filter="All">All</button>
+        <button class="filter-btn" data-filter="Halal vs Haram">Halal vs Haram</button>
+        <button class="filter-btn" data-filter="Investments">Investments</button>
+        <button class="filter-btn" data-filter="Banking & Loans">Banking & Loans</button>
+        <button class="filter-btn" data-filter="Crypto">Crypto</button>
+        <button class="filter-btn" data-filter="Zakat & Charity">Zakat & Charity</button>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="articles-grid" id="articles-grid" role="list">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more-wrap">
+        <button class="btn-load-more" id="load-more-btn" style="display:none;">
+          Load More Articles
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- ====== LATEST ARTICLES ====== -->
-  <section class="latest-section" id="latest">
+  <!-- ============ ABOUT SECTION ============ -->
+  <section class="section section-alt" id="about" aria-labelledby="about-heading">
     <div class="container">
-      <div class="section-header">
-        <span class="section-label">Knowledge Base</span>
-        <h2 class="section-title">All Articles</h2>
-        <p class="section-subtitle">Browse our complete collection of Islamic finance articles and guides.</p>
-        <div class="section-divider"></div>
-      </div>
-      <div class="articles-grid" id="latest-articles">
-        <!-- Rendered by JS -->
+      <div style="max-width: 720px; margin: 0 auto; text-align: center;" class="animate-on-scroll">
+        <span class="section-tag">Our Mission</span>
+        <h2 class="section-title" id="about-heading" style="margin-bottom: 20px;">
+          Why Halal Finance Hub?
+        </h2>
+        <p style="font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 28px;">
+          Navigating modern finance as a Muslim can be overwhelming. Conventional financial systems were not designed with Islamic principles in mind — and finding reliable, scholarly-backed guidance has historically required expensive consultations or sifting through conflicting opinions online.
+        </p>
+        <p style="font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 40px;">
+          Halal Finance Hub brings together contemporary Islamic finance scholarship and practical financial guidance in one accessible place. Every article is grounded in Quranic principles, authentic hadith, and scholarly consensus from recognized Islamic finance institutions like AAOIFI, OIC Fiqh Academy, and independent Shariah boards.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center;">
+          <div style="padding: 24px; background: white; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📖</div>
+            <div style="font-weight: 700; color: var(--color-text); margin-bottom: 6px;">Quran-Grounded</div>
+            <div style="font-size: 0.85rem; color: var(--color-text-muted);">Every ruling traced to authentic sources</div>
+          </div>
+          <div style="padding: 24px; background: white; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🏛️</div>
+            <div style="font-weight: 700; color: var(--color-text); margin-bottom: 6px;">Scholar-Reviewed</div>
+            <div style="font-size: 0.85rem; color: var(--color-text-muted);">Aligned with recognized Shariah standards</div>
+          </div>
+          <div style="padding: 24px; background: white; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🌍</div>
+            <div style="font-weight: 700; color: var(--color-text); margin-bottom: 6px;">Globally Relevant</div>
+            <div style="font-size: 0.85rem; color: var(--color-text-muted);">Covering UK, US, and global markets</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ====== FOOTER ====== -->
-  <footer class="footer" id="about">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Halal Finance Hub</h3>
-          <p>Your trusted source for clear, scholarly-backed guidance on Islamic finance. We make halal finance accessible to everyone.</p>
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="newsletter" id="newsletter" aria-labelledby="newsletter-heading">
+    <div class="newsletter-inner">
+      <h2 id="newsletter-heading">Stay Informed on Halal Finance</h2>
+      <p>New articles on Islamic finance, investment guidance, and Shariah rulings — delivered to your inbox.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input
+          type="email"
+          class="newsletter-input"
+          placeholder="Enter your email address"
+          aria-label="Email address"
+          required
+        />
+        <button type="submit" class="newsletter-btn">Subscribe</button>
+      </form>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 14px;">
+        No spam, ever. Unsubscribe at any time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-logo">
+          <div class="nav-logo-icon" aria-hidden="true">☽</div>
+          <span class="footer-brand-name">Halal Finance Hub</span>
         </div>
-        <div class="footer-links-group">
-          <h4>Quick Links</h4>
-          <a href="index.html">Home</a>
-          <a href="#categories">Categories</a>
-          <a href="#latest">All Articles</a>
-        </div>
-        <div class="footer-links-group">
-          <h4>Topics</h4>
-          <a href="#latest">Halal vs Haram</a>
-          <a href="#latest">Investments</a>
-          <a href="#latest">Banking & Loans</a>
-          <a href="#latest">Crypto</a>
-          <a href="#latest">Zakat & Charity</a>
-        </div>
-        <div class="footer-links-group">
-          <h4>About</h4>
-          <a href="#about">Our Mission</a>
-          <a href="#about">Scholars</a>
-          <a href="#about">Contact</a>
+        <p class="footer-brand-desc">
+          Clear, scholarly guidance on Islamic finance for modern Muslims. Grounded in the Quran, Sunnah, and contemporary Shariah scholarship.
+        </p>
+        <div class="footer-social" aria-label="Social media links">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="Instagram">◈</a>
+          <a href="#" aria-label="Telegram">✈</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2025 Halal Finance Hub. All rights reserved.</span>
-        <span>Built with sincerity for the Ummah.</span>
+
+      <div>
+        <div class="footer-col-title">Articles</div>
+        <ul class="footer-links" role="list">
+          <li><a href="#" onclick="filterByCategory('Halal vs Haram'); document.getElementById('latest-section').scrollIntoView({behavior:'smooth'}); return false;">Halal vs Haram</a></li>
+          <li><a href="#" onclick="filterByCategory('Investments'); document.getElementById('latest-section').scrollIntoView({behavior:'smooth'}); return false;">Investments</a></li>
+          <li><a href="#" onclick="filterByCategory('Banking & Loans'); document.getElementById('latest-section').scrollIntoView({behavior:'smooth'}); return false;">Banking & Loans</a></li>
+          <li><a href="#" onclick="filterByCategory('Crypto'); document.getElementById('latest-section').scrollIntoView({behavior:'smooth'}); return false;">Crypto</a></li>
+          <li><a href="#" onclick="filterByCategory('Zakat & Charity'); document.getElementById('latest-section').scrollIntoView({behavior:'smooth'}); return false;">Zakat & Charity</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links" role="list">
+          <li><a href="#">AAOIFI Standards</a></li>
+          <li><a href="#">Zakat Calculator</a></li>
+          <li><a href="#">Find a Scholar</a></li>
+          <li><a href="#">Islamic Banks</a></li>
+          <li><a href="#">Halal ETFs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Site</div>
+        <ul class="footer-links" role="list">
+          <li><a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'}); return false;">About Us</a></li>
+          <li><a href="#">Editorial Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-bottom-text">
+        © 2024 Halal Finance Hub. For informational purposes only. Always consult a qualified Islamic scholar for personal financial rulings.
+      </p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Disclaimer</a>
       </div>
     </div>
   </footer>

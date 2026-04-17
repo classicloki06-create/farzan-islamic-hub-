@@ -1,105 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Article — Halal Finance Hub</title>
-  <meta name="description" content="Read in-depth articles on Islamic finance topics at Halal Finance Hub.">
-  <link rel="stylesheet" href="css/styles.css">
+  <meta name="description" content="In-depth Islamic finance guidance from Halal Finance Hub." />
+  <meta name="theme-color" content="#1a4731" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Article page-specific overrides */
+    .article-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-page-wrapper main {
+      flex: 1;
+    }
+
+    /* Progress bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      width: 0%;
+      z-index: 200;
+      transition: width 0.1s linear;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Article header decorative bar */
+    .article-header-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light), var(--color-accent));
+    }
+
+    /* Sticky share bar */
+    .share-bar {
+      position: fixed;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 50;
+    }
+
+    .share-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      border: 1.5px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .share-btn:hover {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+      transform: scale(1.1);
+    }
+
+    .share-btn.copied {
+      background: #10b981;
+      color: white;
+      border-color: #10b981;
+    }
+
+    /* Table of contents (auto-generated) */
+    .toc-sidebar {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 200px;
+      display: none;
+    }
+
+    @media (min-width: 1400px) {
+      .toc-sidebar { display: block; }
+    }
+
+    .toc-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+      margin-bottom: 10px;
+    }
+
+    .toc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .toc-item {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      padding: 4px 0;
+      border-left: 2px solid var(--color-border);
+      padding-left: 10px;
+      transition: var(--transition-fast);
+      line-height: 1.4;
+    }
+
+    .toc-item:hover,
+    .toc-item.active {
+      color: var(--color-primary);
+      border-left-color: var(--color-primary);
+    }
+
+    /* Mobile share-bar hidden on small screens */
+    @media (max-width: 1100px) {
+      .share-bar { display: none; }
+    }
+
+    /* Smooth scrollto article anchor */
+    .article-page {
+      max-width: 740px;
+    }
+
+    /* Loading skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 6px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* Print styles */
+    @media print {
+      .navbar, .reading-progress, .share-bar, .related-section, .back-btn { display: none !important; }
+      .article-page { max-width: 100%; padding: 0; }
+      .article-content { font-size: 11pt; }
+    }
+  </style>
 </head>
-<body>
+<body class="article-page-body">
 
-  <!-- ====== NAVBAR ====== -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="navbar-logo">
-        <span class="logo-icon">H</span>
-        Halal Finance Hub
-      </a>
-      <div class="navbar-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#categories">Categories</a>
-        <a href="index.html#latest">Latest</a>
-        <a href="index.html#about">About</a>
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="reading-progress" role="progressbar" aria-hidden="true"></div>
+
+  <div class="article-page-wrapper">
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo" aria-label="Halal Finance Hub Home">
+          <div class="nav-logo-icon" aria-hidden="true">☽</div>
+          Halal Finance Hub
+        </a>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#newsletter" class="nav-cta">Subscribe</a></li>
+        </ul>
+
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-      <button class="navbar-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+      <!-- Decorative bar below nav for article page -->
+      <div class="article-header-bar"></div>
+    </nav>
 
-  <!-- ====== ARTICLE CONTENT ====== -->
-  <article class="article-page" id="article-page-content">
-    <header class="article-header" id="article-header">
-      <!-- Rendered by JS -->
-    </header>
-
-    <div class="article-content" id="article-content">
-      <!-- Rendered by JS -->
+    <!-- ============ STICKY SHARE BAR ============ -->
+    <div class="share-bar" aria-label="Share article">
+      <button class="share-btn" onclick="shareArticle('twitter')" title="Share on Twitter" aria-label="Share on Twitter">𝕏</button>
+      <button class="share-btn" onclick="shareArticle('whatsapp')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+      <button class="share-btn" onclick="copyLink()" title="Copy link" id="copy-btn" aria-label="Copy article link">🔗</button>
     </div>
 
-    <div class="references-section" id="article-references">
-      <!-- Rendered by JS -->
-    </div>
-  </article>
-
-  <!-- ====== NOT FOUND ====== -->
-  <div class="not-found" id="not-found" style="display: none;">
-    <div class="container">
-      <h1>Article Not Found</h1>
-      <p>Sorry, the article you're looking for doesn't exist or may have been moved.</p>
-      <a href="index.html">
-        <span>←</span> Back to Home
-      </a>
-    </div>
-  </div>
-
-  <!-- ====== RELATED ARTICLES ====== -->
-  <section class="related-section" id="related-articles">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">Continue Reading</span>
-        <h2 class="section-title">Related Articles</h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="related-grid">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h3>Halal Finance Hub</h3>
-          <p>Your trusted source for clear, scholarly-backed guidance on Islamic finance. We make halal finance accessible to everyone.</p>
-        </div>
-        <div class="footer-links-group">
-          <h4>Quick Links</h4>
-          <a href="index.html">Home</a>
-          <a href="index.html#categories">Categories</a>
-          <a href="index.html#latest">All Articles</a>
-        </div>
-        <div class="footer-links-group">
-          <h4>Topics</h4>
-          <a href="index.html#latest">Halal vs Haram</a>
-          <a href="index.html#latest">Investments</a>
-          <a href="index.html#latest">Banking & Loans</a>
-          <a href="index.html#latest">Crypto</a>
-          <a href="index.html#latest">Zakat & Charity</a>
+    <!-- ============ MAIN CONTENT ============ -->
+    <main>
+      <div id="article-container" style="padding-top: 16px;">
+        <!-- Skeleton loader while JS renders -->
+        <div class="article-page" style="max-width: 740px; margin: 0 auto; padding: 40px 24px 80px;">
+          <div class="skeleton" style="width:120px;height:36px;margin-bottom:36px;"></div>
+          <div class="skeleton" style="width:80px;height:20px;margin-bottom:16px;"></div>
+          <div class="skeleton" style="width:100%;height:48px;margin-bottom:12px;"></div>
+          <div class="skeleton" style="width:75%;height:48px;margin-bottom:28px;"></div>
+          <div class="skeleton" style="width:100%;height:64px;margin-bottom:32px;"></div>
+          <div class="skeleton" style="width:100%;height:200px;"></div>
         </div>
       </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">
+            <div class="nav-logo-icon" aria-hidden="true">☽</div>
+            <span class="footer-brand-name">Halal Finance Hub</span>
+          </div>
+          <p class="footer-brand-desc">
+            Clear, scholarly guidance on Islamic finance for modern Muslims. Grounded in the Quran, Sunnah, and contemporary Shariah scholarship.
+          </p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="YouTube">▶</a>
+            <a href="#" aria-label="Instagram">◈</a>
+            <a href="#" aria-label="Telegram">✈</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Categories</div>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html#categories">Halal vs Haram</a></li>
+            <li><a href="index.html#categories">Investments</a></li>
+            <li><a href="index.html#categories">Banking & Loans</a></li>
+            <li><a href="index.html#categories">Crypto</a></li>
+            <li><a href="index.html#categories">Zakat & Charity</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Resources</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#">AAOIFI Standards</a></li>
+            <li><a href="#">Zakat Calculator</a></li>
+            <li><a href="#">Find a Scholar</a></li>
+            <li><a href="#">Islamic Banks</a></li>
+            <li><a href="#">Halal ETFs</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Site</div>
+          <ul class="footer-links" role="list">
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="#">Editorial Policy</a></li>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
       <div class="footer-bottom">
-        <span>&copy; 2025 Halal Finance Hub. All rights reserved.</span>
-        <span>Built with sincerity for the Ummah.</span>
+        <p class="footer-bottom-text">
+          © 2024 Halal Finance Hub. For informational purposes only. Always consult a qualified Islamic scholar for personal financial rulings.
+        </p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Disclaimer</a>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+
+  </div><!-- /.article-page-wrapper -->
 
   <script src="js/script.js"></script>
+  <script>
+    /* ============ READING PROGRESS BAR ============ */
+    (function() {
+      const progressBar = document.getElementById('reading-progress');
+      if (!progressBar) return;
+
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = Math.min(progress, 100) + '%';
+      }
+
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    })();
+
+    /* ============ SHARE FUNCTIONS ============ */
+    function shareArticle(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+
+      const links = {
+        twitter: `https://twitter.com/intent/tweet?url=${url}&text=${title}&via=HalalFinanceHub`,
+        whatsapp: `https://wa.me/?text=${title}%20${url}`
+      };
+
+      if (links[platform]) {
+        window.open(links[platform], '_blank', 'noopener,noreferrer,width=600,height=450');
+      }
+    }
+
+    function copyLink() {
+      const copyBtn = document.getElementById('copy-btn');
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        if (copyBtn) {
+          copyBtn.classList.add('copied');
+          copyBtn.textContent = '✓';
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.textContent = '🔗';
+          }, 2500);
+        }
+      }).catch(() => {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = window.location.href;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      });
+    }
+
+    /* ============ TABLE OF CONTENTS ============ */
+    function buildTOC() {
+      const headings = document.querySelectorAll('.article-content h2');
+      const tocList = document.querySelector('.toc-list');
+      if (!tocList || headings.length < 2) return;
+
+      headings.forEach((h, i) => {
+        if (!h.id) h.id = `section-${i}`;
+        const item = document.createElement('div');
+        item.className = 'toc-item';
+        item.textContent = h.textContent;
+        item.addEventListener('click', () => {
+          h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        tocList.appendChild(item);
+      });
+
+      // Highlight active TOC item on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = Array.from(headings).indexOf(entry.target);
+            document.querySelectorAll('.toc-item').forEach((item, i) => {
+              item.classList.toggle('active', i === idx);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -60% 0px' });
+
+      headings.forEach(h => observer.observe(h));
+    }
+
+    // Build TOC after article renders
+    const tocObserver = new MutationObserver(() => {
+      if (document.querySelector('.article-content')) {
+        tocObserver.disconnect();
+        setTimeout(buildTOC, 100);
+      }
+    });
+    tocObserver.observe(document.getElementById('article-container'), { childList: true, subtree: true });
+  </script>
 </body>
 </html>

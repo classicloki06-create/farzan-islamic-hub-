@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MeezanJournal — Scholarly, accessible analysis of Islamic finance. From the fundamentals of riba to the frontier of digital assets." />
+  <meta property="og:title" content="MeezanJournal — Islamic Finance Explained" />
+  <meta property="og:description" content="Scholarly analysis of halal investing, Islamic banking, fintech, and more." />
+  <meta property="og:type" content="website" />
+  <title>MeezanJournal — Islamic Finance Explained</title>
+
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Favicon (inline SVG data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232d6a4f'/><text x='16' y='23' text-anchor='middle' font-size='20' fill='white' font-family='serif'>م</text></svg>" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navbar (rendered by JS) ───────────────────────────────────────── -->
+  <div id="navbar"></div>
+
+  <main>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────── -->
+    <section class="hero" id="hero" aria-label="Featured article"></section>
+
+    <!-- ── Featured Articles ─────────────────────────────────────────── -->
+    <section class="featured-section" aria-labelledby="featuredHeading">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" id="featuredHeading">Editor's Picks</h2>
+          <a href="?category=all" class="section-link">All articles →</a>
+        </div>
+        <div class="featured-grid" id="featuredArticles">
+          <!-- Rendered by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Categories ────────────────────────────────────────────────── -->
+    <section class="categories-section" aria-labelledby="categoriesHeading">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" id="categoriesHeading">Browse by Topic</h2>
+        </div>
+        <div class="categories-grid" id="categoriesGrid" role="group" aria-label="Article categories">
+          <!-- Rendered by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Latest Articles ───────────────────────────────────────────── -->
+    <section class="latest-section" id="latest" aria-labelledby="latestTitle">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" id="latestTitle">Latest Articles</h2>
+        </div>
+
+        <!-- Filter pills -->
+        <div class="filter-bar" role="group" aria-label="Filter articles by category">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="banking">Banking</button>
+          <button class="filter-btn" data-category="investing">Investing</button>
+          <button class="filter-btn" data-category="fintech">FinTech</button>
+          <button class="filter-btn" data-category="insurance">Takaful</button>
+          <button class="filter-btn" data-category="realestate">Real Estate</button>
+          <button class="filter-btn" data-category="economy">Economy</button>
+        </div>
+
+        <!-- Article grid -->
+        <div class="articles-grid" id="latestArticles" aria-live="polite">
+          <!-- Rendered and filtered by main.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer (rendered by JS) ──────────────────────────────────────── -->
+  <div id="footer"></div>
+
+  <!-- Module entry point -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="In-depth Islamic finance analysis — MeezanJournal" />
+  <title>MeezanJournal — Article</title>
+
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232d6a4f'/><text x='16' y='23' text-anchor='middle' font-size='20' fill='white' font-family='serif'>م</text></svg>" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Article-specific styles -->
+  <style>
+    /* Smooth article load */
+    #articleContainer {
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* Drop cap for intro paragraph */
+    .article-body__intro::first-letter {
+      font-family: var(--font-display);
+      font-size: 4em;
+      font-weight: 600;
+      float: left;
+      line-height: 0.8;
+      margin: 0.05em 0.08em 0 0;
+      color: var(--color-primary);
+    }
+
+    /* Article page background stripe */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100vh;
+      background: linear-gradient(180deg, var(--color-primary-faint), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #articleContainer {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────────────── -->
+  <div id="navbar"></div>
+
+  <!-- ── Article Content (rendered by article.js) ───────────────────── -->
+  <main id="articleContainer">
+    <!-- Loading placeholder -->
+    <div class="container--narrow" style="padding: 4rem 1.5rem; text-align: center;">
+      <div style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text-light); font-style: italic;">
+        Loading article…
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <div id="footer"></div>
+
+  <!-- Module entry point for article page -->
+  <script type="module" src="js/article.js"></script>
+</body>
+</html>

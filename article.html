@@ -1,212 +1,3 @@
-
-
-node.js
-js
-
-
-style.css
-css
-
-
-article.html
-106 lines
-
-html
-
-
-index.html
-129 lines
-
-html
-
-Modify the existing website (DO NOT rebuild from scratch).
-Keep the current structure:
-
-index.html
-article.html
-style.css
-script.js
-🎯 GOAL: Transform the current website from a basic AI-generated look into a PREMIUM, professional Islamic finance platform with strong UI, better UX, and business features.
-🎨 UI IMPROVEMENTS (VERY IMPORTANT):
-Fix the “AI-made” look by:
-
-Implement proper typography pairing:
-Headings: elegant serif (Playfair Display style)
-Body: clean sans-serif (Inter style)
-Add:
-consistent spacing system (padding, margins)
-max-width container (center content)
-proper line-height for readability
-card design with shadows and rounded corners
-Improve:
-navbar design (clean, spaced, sticky)
-buttons (modern, rounded, hover effects)
-article cards (image placeholder, better layout)
-Use color system:
- 
-Primary: deep green (
-#0f3d2e)
-Background: beige (
-#f5f3ef)
-Accent: gold/soft green ✨ ADD FEATURE: HADITH LOADER (ON PAGE LOAD)
-
-When user opens the website, show a full-screen overlay BEFORE homepage loads
-Display a RANDOM hadith from a predefined array in script.js
-Use only trusted sources:
-
-Sahih Bukhari
-Sahih Muslim
-Tirmidhi (well-known)
-Each hadith object should include:
-
-text
-source
-Example: { text: "The truthful and trustworthy merchant is with the Prophets...", source: "Tirmidhi 1209" }
-Behavior:
-
-Fade-in animation
-Show hadith centered
-Button: "Enter Site"
-After click → hide overlay and show homepage
-Each refresh → different hadith
-💼 ADD BUSINESS FEATURES:
-
-WhatsApp Consultation Integration
-Add buttons:
-
-“Get 1-on-1 Guidance”
-“Ask a Scholar”
-Link: https://wa.me/917824023183
-Pre-filled message: "Assalamu Alaikum, I need guidance regarding halal finance."
-Place CTA:
-
-Navbar
-Article end
-Hero section
-
-Ad Placement Sections
-Add clean placeholders:
-
-Top banner (homepage)
-Mid-article ad block
-Footer ad section
-Make them subtle and professional (not spammy)
-
-Authority Section
-Add section:
-
-“Reviewed by Scholars”
-“Our Methodology”
-📄 ARTICLE PAGE IMPROVEMENTS:
-
-Improve readability:
-max-width text container
-larger font size
-better spacing
-Add:
-verdict badge styling:
-green = halal
-red = haram
-yellow = conditional
-Add CTA at end: “Need personal guidance? Book a consultation”
-⚙️ JAVASCRIPT IMPROVEMENTS:
-
-Keep existing article system
-Add hadith randomizer
-Add WhatsApp CTA logic
-Improve DOM structure if messy
-🎯 FINAL RESULT:
-The website should:
-
-look premium and modern
-feel like a real startup platform
-include business features (consultation, ads)
-maintain clean structure (no frameworks)
-DO NOT:
-
-add new files
-introduce build tools
-break existing functionality
-Show more
-15:55
-
-Viewed 3 files
-Viewed 3 files
-Now let me read the truncated parts of the JS and CSS files:
-
-
-Reading truncated JS section
-Reading truncated JS section
-Now I have a thorough understanding of the codebase. Let me build the premium version of all files:
-
-
-Created 3 files
-Created 3 files
-Now let me write the enhanced JS file:
-
-
-Read the truncated JS articles section
-Read the truncated JS articles section
-Now I have all the data needed. Let me create the enhanced JS:
-
-
-Created a file, read a file
-Created a file, read a file
-All four files are ready. Here's a summary of everything that was done:
-
-Typography & Design System
-
-Replaced generic fonts with Playfair Display (headings) + DM Sans (body) via Google Fonts — loaded in the CSS @import
-Deep green primary (
-#0f3d2e), warm beige background (
-#f5f3ef), and gold accents (
-#b8952a) throughout
-Consistent spacing system, refined shadows, and border-radius tokens
-Hadith Overlay (new feature)
-
-Full-screen overlay with 12 authentic hadiths (Bukhari, Muslim, Tirmidhi) shown randomly on each page load
-Fade-in animation, centered layout, gold ornament styling, "Enter Site" button fades it out smoothly
-WhatsApp Consultation (new feature)
-
-"Ask a Scholar" button in the navbar (green WhatsApp style)
-Two CTA buttons in the hero section ("Get 1-on-1 Guidance" + outline variant)
-Full consultation section above the footer with pre-filled message link
-"Book a Consultation" CTA at the end of every article page
-Ad Placements (new feature)
-
-Top banner strip (728×90 leaderboard) before the navbar
-Mid-article rectangle ad (300×250) between content and references
-Footer ad section — all subtle and professional with dashed borders
-Authority Section (new feature)
-
-"Reviewed by Scholars", "Our Methodology", "Multiple Opinions", "For the Ummah" trust badges below the hero
-Article Page Improvements
-
-Larger verdict badges (verdict-badge-lg) in green/red/yellow
-Better max-width text container, increased line-height for readability
-Clean article CTA box at end linking to WhatsApp
-
-Index
-Code · HTML 
-
-Article
-Code · HTML 
-
-Style
-Code · CSS 
-
-Node
-JS 
-
-You are out of free messages until 8:30 PM
-Upgrade
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-Article · HTML
-Copy
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,7 +8,7 @@ Copy
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
- 
+
   <!-- ====== NAVBAR ====== -->
   <nav class="navbar">
     <div class="container">
@@ -246,17 +37,17 @@ Copy
       </div>
     </div>
   </nav>
- 
+
   <!-- ====== ARTICLE CONTENT ====== -->
   <article class="article-page" id="article-page-content">
     <header class="article-header" id="article-header">
       <!-- Rendered by JS -->
     </header>
- 
+
     <div class="article-content" id="article-content">
       <!-- Rendered by JS -->
     </div>
- 
+
     <!-- Mid-article Ad -->
     <div style="max-width: var(--article-max, 740px); margin: 0 auto; padding: 0 28px;">
       <div class="ad-banner ad-mid-article">
@@ -264,12 +55,12 @@ Copy
         <span class="ad-size" style="font-size:0.7rem;color:var(--clr-text-light);background:rgba(15,61,46,0.06);padding:3px 8px;border-radius:4px;">300×250 · Rectangle</span>
       </div>
     </div>
- 
+
     <div class="references-section" id="article-references">
       <!-- Rendered by JS -->
     </div>
   </article>
- 
+
   <!-- ====== ARTICLE CTA ====== -->
   <div class="article-cta-box" id="article-cta">
     <div class="article-cta-inner">
@@ -284,7 +75,7 @@ Copy
       </a>
     </div>
   </div>
- 
+
   <!-- ====== NOT FOUND ====== -->
   <div class="not-found" id="not-found" style="display: none;">
     <div class="container">
@@ -295,7 +86,7 @@ Copy
       </a>
     </div>
   </div>
- 
+
   <!-- ====== RELATED ARTICLES ====== -->
   <section class="related-section" id="related-articles">
     <div class="container">
@@ -309,7 +100,7 @@ Copy
       </div>
     </div>
   </section>
- 
+
   <!-- ====== FOOTER ====== -->
   <footer class="footer">
     <div class="container">
@@ -348,14 +139,7 @@ Copy
       </div>
     </div>
   </footer>
- 
+
   <script src="js/script.js"></script>
 </body>
 </html>
- 
-
-
-
-
-
-

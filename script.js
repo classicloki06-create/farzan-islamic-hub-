@@ -1,1354 +1,873 @@
 /* ============================================
-   HALAL FINANCE HUB — Main JavaScript
+   HALAL FINANCE HUB — JavaScript (Premium)
    ============================================ */
 
-'use strict';
+// ---- Hadith Data ----
+const hadiths = [
+  {
+    text: "The truthful, honest merchant will be with the Prophets, the truthful, and the martyrs on the Day of Resurrection.",
+    source: "Tirmidhi 1209 — Sahih"
+  },
+  {
+    text: "Whoever of you wakes up in the morning secure in his home, healthy in body, and having enough food for that day — it is as if the entire world has been gathered for him.",
+    source: "Tirmidhi 2346 — Hasan"
+  },
+  {
+    text: "There will come upon the people a time when a man will not care how he earns his money, whether from lawful or forbidden means.",
+    source: "Sahih Bukhari 2059"
+  },
+  {
+    text: "Allah has permitted trade and has forbidden interest (riba).",
+    source: "Quran 2:275"
+  },
+  {
+    text: "Whoever pays zakat on his wealth, the evil of his wealth is gone from him.",
+    source: "Sahih Bukhari — Book of Zakat"
+  },
+  {
+    text: "The hand of the giver is the upper hand, and the lower hand is the hand of the receiver.",
+    source: "Sahih Bukhari 1429"
+  },
+  {
+    text: "Do not let your love of wealth lead you away from what Allah has made lawful for you.",
+    source: "Musnad Ahmad — Authenticated"
+  },
+  {
+    text: "Be wary of transactions that involve uncertainty (gharar), for it is a form of gambling.",
+    source: "Sahih Muslim 1513"
+  },
+  {
+    text: "Every body that was nourished with haram will have the Fire as its more rightful place.",
+    source: "Tirmidhi 614 — Sahih"
+  },
+  {
+    text: "The believer is not one who eats his fill when his neighbour beside him is hungry.",
+    source: "Al-Adab Al-Mufrad 112 — Authenticated"
+  },
+  {
+    text: "Seek the lawful sustenance even if it leads you to the farthest corners of the earth.",
+    source: "Bayhaqi — Shu'ab al-Iman"
+  },
+  {
+    text: "Allah is pure and accepts only that which is pure. Allah has commanded the believers what He commanded the messengers.",
+    source: "Sahih Muslim 1015"
+  }
+];
 
-/* ============================================
-   ARTICLES DATA
-   ============================================ */
+// ---- Articles Data ----
 const articles = [
   {
-    id: 'is-crypto-halal',
-    title: 'Is Cryptocurrency Halal? A Comprehensive Islamic Finance Analysis',
-    description: 'An in-depth look at whether Bitcoin, Ethereum, and other cryptocurrencies comply with Shariah law, examining the key principles of gharar, maysir, and riba.',
-    category: 'Crypto',
-    author: 'Dr. Yusuf Al-Qardawi',
-    authorInitials: 'YQ',
-    date: 'December 12, 2024',
-    readTime: '9 min read',
-    verdict: 'Conditional',
-    icon: '₿',
-    tags: ['Bitcoin', 'Blockchain', 'Shariah'],
-    featured: true,
+    id: "is-stock-trading-halal",
+    title: "Is Stock Trading Halal? A Comprehensive Guide",
+    description: "Explore the Islamic rulings on stock trading, which companies are permissible to invest in, and the screening criteria scholars recommend.",
+    category: "Investments",
+    author: "Dr. Ahmed Al-Rashid",
+    date: "January 15, 2025",
+    verdict: "Conditional",
+    icon: "📈",
     content: `
-      <p>The question of cryptocurrency's permissibility in Islamic law has become one of the most debated topics in contemporary Islamic finance. As digital assets continue to reshape the global financial landscape, Muslims worldwide are seeking clear guidance on whether they can participate in this revolution while remaining faithful to their religious principles.</p>
+      <p>Stock trading is one of the most discussed topics in Islamic finance. Muslims around the world want to grow their wealth while staying within the boundaries set by Shariah law. The good news is that stock trading is not inherently haram — but it comes with important conditions.</p>
 
-      <h2>The Core Islamic Finance Principles at Stake</h2>
-      <p>Before determining the permissibility of cryptocurrency, we must understand the fundamental Islamic finance principles that apply:</p>
+      <h2>The Basic Ruling</h2>
+      <p>According to the majority of Islamic scholars, buying and selling shares of companies is permissible in principle. When you buy a stock, you are purchasing partial ownership of a real business — and owning a business is clearly halal in Islam.</p>
+
+      <blockquote>"Trade is permitted, and interest (riba) is forbidden." — Quran 2:275</blockquote>
+
+      <h2>Shariah Screening Criteria</h2>
+      <p>Not every company's stock is halal to invest in. Scholars have developed screening criteria to determine whether a stock is permissible:</p>
+
+      <h3>Business Activity Screen</h3>
       <ul>
-        <li><strong>Riba (Interest):</strong> Any predetermined, fixed return on financial transactions is prohibited. This is non-negotiable in Islamic law.</li>
-        <li><strong>Gharar (Uncertainty):</strong> Excessive uncertainty or ambiguity in contracts and transactions is forbidden. Speculation beyond a reasonable level is discouraged.</li>
-        <li><strong>Maysir (Gambling):</strong> Any transaction that resembles gambling — where one party's gain is directly another's loss without creating real value — is prohibited.</li>
-        <li><strong>Halal Underlying Activity:</strong> The asset must derive value from, or be backed by, a permissible underlying activity or commodity.</li>
+        <li>The company's primary business must be halal (not alcohol, gambling, pork, conventional banking, etc.)</li>
+        <li>If a small portion of revenue (typically under 5%) comes from impermissible activities, some scholars allow it with purification of dividends</li>
       </ul>
 
-      <h2>Arguments Supporting Cryptocurrency as Halal</h2>
-      <p>Several prominent Islamic scholars and Shariah boards have conditionally approved cryptocurrency for the following reasons:</p>
+      <h3>Financial Ratio Screen</h3>
+      <ul>
+        <li><strong>Debt ratio:</strong> Total interest-bearing debt should be less than 33% of market capitalization</li>
+        <li><strong>Interest income:</strong> Should be less than 5% of total revenue</li>
+        <li><strong>Accounts receivable:</strong> Should be less than 49% of total assets</li>
+      </ul>
 
-      <blockquote>
-        <p>"Cryptocurrency, when used as a medium of exchange for legitimate goods and services, functions similarly to conventional currency and does not inherently involve riba." — Islamic Finance Advisory Board, 2021</p>
-      </blockquote>
-
-      <h3>1. Medium of Exchange Argument</h3>
-      <p>Bitcoin and other cryptocurrencies can function as a medium of exchange — similar to how gold and silver functioned historically. The Quran does not restrict the form of money used in transactions. What matters is the nature of the transaction itself, not the currency used.</p>
-
-      <h3>2. Real Value and Utility</h3>
-      <p>Unlike pure speculation instruments, many cryptocurrencies provide genuine utility — Bitcoin secures a decentralized payment network, while Ethereum powers smart contracts. This underlying utility provides a basis for real value creation.</p>
-
-      <h3>3. No Inherent Riba</h3>
-      <p>Simply holding or transacting in cryptocurrency does not involve interest. The prohibition of riba applies to lending and borrowing with predetermined returns, not to currencies themselves.</p>
-
-      <h2>Arguments Against Cryptocurrency as Halal</h2>
-      <p>Many scholars raise serious concerns that cannot be dismissed:</p>
-
-      <div class="highlight-box">
-        <strong>Key Concern:</strong> The extreme volatility and speculative nature of most cryptocurrency markets bears strong resemblance to maysir (gambling). When purchasing purely for speculative gain rather than utility, the transaction may cross into prohibited territory.
+      <div class="info-box caution">
+        <p><strong>⚠ Important:</strong> Day trading and excessive speculation (gharar) are generally discouraged or considered haram by most scholars. The intention should be investment, not gambling on price movements.</p>
       </div>
 
-      <h3>1. Excessive Gharar</h3>
-      <p>Cryptocurrency prices can fluctuate 20-30% in a single day. This extreme uncertainty (gharar) in value makes it difficult to justify most crypto purchases as anything other than pure speculation. The Hadith warns clearly against transactions with excessive uncertainty.</p>
+      <h2>Purification of Earnings</h2>
+      <p>Even when investing in screened stocks, a small percentage of the company's income may come from impermissible sources. Scholars recommend calculating this percentage and donating that portion of your dividends to charity — a process known as "purification."</p>
 
-      <h3>2. Lack of Intrinsic Value</h3>
-      <p>Some scholars argue that unlike gold (which has physical utility), most cryptocurrencies have no intrinsic value independent of market speculation. This lack of underlying tangible asset raises Shariah concerns.</p>
-
-      <h3>3. Maysir Resemblance</h3>
-      <p>Day trading, highly leveraged crypto positions, and meme coin purchases show characteristics of gambling — the primary motive is profit at another's expense, with no underlying value creation.</p>
-
-      <h2>The Conditional Verdict</h2>
-      <p>Based on the scholarly consensus emerging in 2023-2024, cryptocurrency can be considered <strong>conditionally permissible</strong> under the following conditions:</p>
+      <h2>Practical Steps for Muslim Investors</h2>
       <ol>
-        <li>It is used as a genuine medium of exchange, not purely for speculation</li>
-        <li>Leverage and margin trading are strictly avoided (these introduce riba)</li>
-        <li>Investment is based on fundamental analysis, not pure price speculation</li>
-        <li>The specific cryptocurrency has real utility or underlying value</li>
-        <li>Staking rewards that function as interest (riba) are avoided</li>
-        <li>Transactions involving alcohol, gambling, or other haram industries are refused</li>
-      </ol>
-
-      <h2>What to Avoid</h2>
-      <p>The following crypto activities are widely considered <strong>haram</strong> by Islamic scholars:</p>
-      <ul>
-        <li>Margin trading and leveraged positions (involves riba)</li>
-        <li>Interest-bearing lending protocols in DeFi</li>
-        <li>Meme coins with no utility (pure gambling/maysir)</li>
-        <li>Crypto gambling platforms</li>
-        <li>NFT speculation without utility</li>
-        <li>Yield farming that mimics interest</li>
-      </ul>
-
-      <h2>Practical Guidance for Muslim Investors</h2>
-      <p>If you choose to invest in cryptocurrency while adhering to Islamic principles, consider these guidelines from Shariah-compliant fintech platforms and scholars:</p>
-      <ul>
-        <li>Use established screening platforms like Zoya or IslamicCryptoRating</li>
-        <li>Focus on use-case driven cryptocurrencies with real utility</li>
-        <li>Avoid all forms of leverage and margin</li>
-        <li>Invest only what you can afford to lose</li>
-        <li>Consult a qualified Islamic finance scholar for personalized guidance</li>
-      </ul>
-
-      <p>The landscape of Islamic finance rulings on cryptocurrency continues to evolve. As the technology matures and scholars deepen their understanding, more refined guidance will emerge. For now, the conditional permissibility approach represents the most balanced scholarly position available.</p>
-    `,
-    references: [
-      'AAOIFI Shariah Standards on Digital Currencies, 2023 Update',
-      'Mufti Faraz Adam, "Bitcoin: Shariah Compliant?" — Amanah Finance, 2021',
-      'Dr. Monzer Kahf, Islamic Economics and Finance, 2nd Ed.',
-      'OIC Fiqh Academy Resolution No. 215 on Digital Assets',
-      'Darul Iftaa UK: Cryptocurrency Fatwa Compendium, 2022'
-    ]
-  },
-  {
-    id: 'halal-mortgages-guide',
-    title: 'Halal Mortgages Explained: How to Buy a Home Without Riba',
-    description: 'A complete guide to Islamic home financing structures including Murabaha, Diminishing Musharakah, and Ijara — with a comparison of UK and US providers.',
-    category: 'Banking & Loans',
-    author: 'Sheikh Mufti Ibrahim Hassan',
-    authorInitials: 'IH',
-    date: 'November 28, 2024',
-    readTime: '11 min read',
-    verdict: 'Halal',
-    icon: '🏠',
-    tags: ['Mortgage', 'Home Finance', 'Riba'],
-    featured: true,
-    content: `
-      <p>Owning a home is a fundamental aspiration for most people — and for Muslims, navigating this dream while avoiding riba (interest) has historically been one of the greatest financial challenges. Conventional mortgages, by definition, involve the payment of interest, making them impermissible under Islamic law.</p>
-
-      <p>However, Islamic finance has developed sophisticated, Shariah-compliant alternatives that allow Muslim families to purchase homes without compromising their faith. This comprehensive guide explores the three main structures available today.</p>
-
-      <h2>Why Conventional Mortgages Are Haram</h2>
-      <p>The prohibition of riba is one of the most unambiguous rulings in Islamic law. Allah says in the Quran:</p>
-
-      <blockquote>
-        <p>"Allah has permitted trade and forbidden riba." — Surah Al-Baqarah, 2:275</p>
-      </blockquote>
-
-      <p>A conventional mortgage involves borrowing money from a bank and repaying it with interest. The bank profits from the time-value of money — a concept Islam explicitly rejects. The total interest paid on a 30-year mortgage can often exceed the original loan amount, making conventional home finance deeply problematic from an Islamic perspective.</p>
-
-      <h2>Structure 1: Diminishing Musharakah (Declining Partnership)</h2>
-      <p>This is the most popular and widely considered best Islamic home financing structure. It works as follows:</p>
-
-      <div class="highlight-box">
-        <strong>How it works:</strong> The bank and customer jointly purchase the home. The customer pays rent for the bank's share while gradually buying out that share. As ownership shifts, rent decreases. Eventually, the customer owns 100% of the property.
-      </div>
-
-      <h3>Step-by-Step Process</h3>
-      <ol>
-        <li><strong>Joint Purchase:</strong> Bank contributes 80-90%, customer contributes 10-20% deposit</li>
-        <li><strong>Rental Payment:</strong> Customer pays fair market rent on the bank's share monthly</li>
-        <li><strong>Unit Purchase:</strong> Customer buys additional units (portions) of ownership each month</li>
-        <li><strong>Declining Balance:</strong> As ownership percentage increases, rental payments decrease</li>
-        <li><strong>Full Ownership:</strong> After the agreed term, customer owns 100% of the property</li>
-      </ol>
-
-      <p>The key difference from a conventional mortgage: the bank's return comes from rental income (a legitimate economic activity) rather than interest (money lending). The risk of property damage and market fluctuation is also genuinely shared.</p>
-
-      <h2>Structure 2: Murabaha (Cost-Plus Financing)</h2>
-      <p>In a Murabaha arrangement, the bank purchases the property and immediately resells it to the customer at a marked-up price, with repayment in installments.</p>
-
-      <h3>Key Features</h3>
-      <ul>
-        <li>Bank genuinely purchases and takes ownership of the property first</li>
-        <li>Resale price is agreed upfront and cannot be changed (no compounding)</li>
-        <li>Customer owns the property from day one of the resale</li>
-        <li>No penalty interest on late payments (though fees may apply)</li>
-      </ul>
-
-      <p>Critics note that the profit margin in Murabaha is often calculated with reference to LIBOR or equivalent benchmark rates, raising questions about whether this is truly distinct from interest in substance. However, most major Shariah boards accept Murabaha as valid when structured correctly.</p>
-
-      <h2>Structure 3: Ijara (Leasing)</h2>
-      <p>Ijara functions like a lease-to-own arrangement. The bank purchases the property and leases it to the customer for a fixed term, at the end of which ownership transfers.</p>
-
-      <h3>Ijara wa-Iqtina (Lease and Ownership)</h3>
-      <ul>
-        <li>Bank purchases and retains legal ownership</li>
-        <li>Customer pays monthly rent and a separate purchase commitment</li>
-        <li>Rent is paid only for actual use of the property</li>
-        <li>Ownership transfers at the end of the lease term</li>
-      </ul>
-
-      <h2>Comparing Islamic Mortgage Providers</h2>
-      <p>The availability of Islamic home financing has grown significantly. Here are the major providers by region:</p>
-
-      <h3>United Kingdom</h3>
-      <ul>
-        <li><strong>Al Rayan Bank</strong> — The UK's oldest and largest Islamic bank. Offers Diminishing Musharakah. Fully regulated by the FCA and PRA.</li>
-        <li><strong>HSBC Amanah</strong> — Offers Shariah-compliant home finance through its Amanah division</li>
-        <li><strong>Gatehouse Bank</strong> — Competitive rates on Diminishing Musharakah products</li>
-      </ul>
-
-      <h3>United States</h3>
-      <ul>
-        <li><strong>Guidance Residential</strong> — The largest Islamic mortgage provider in the US, using the Declining Balance Co-ownership model</li>
-        <li><strong>UIF Corporation</strong> — Murabaha and Musharakah-based home financing</li>
-        <li><strong>Ameen Housing Co-op</strong> — Community-based Islamic home financing</li>
-      </ul>
-
-      <h2>Common Questions</h2>
-      <h3>Is Islamic mortgage always more expensive?</h3>
-      <p>Not necessarily. While the structure differs, the total cost is often comparable to conventional mortgages. The key is shopping around and comparing the Effective Annual Rate (EAR) across providers. Some studies show Islamic mortgages can be cost-competitive or even cheaper over the full term.</p>
-
-      <h3>Are Islamic mortgages Shariah-certified?</h3>
-      <p>Reputable Islamic mortgage providers have their products reviewed and certified by independent Shariah Supervisory Boards composed of qualified Islamic scholars. Always check for this certification before proceeding.</p>
-
-      <h2>Conclusion</h2>
-      <p>Halal home financing is not only possible — it is increasingly accessible, competitive, and well-regulated. Whether you choose Diminishing Musharakah, Murabaha, or Ijara, the key is working with a reputable, Shariah-certified institution and understanding the specific structure of your agreement.</p>
-
-      <p>The path to home ownership without riba requires more research than a conventional mortgage, but for Muslims committed to Islamic financial principles, the peace of mind is worth it. Consult with both a qualified Islamic finance adviser and an independent Shariah scholar before making your decision.</p>
-    `,
-    references: [
-      'AAOIFI Shariah Standard No. 12: Sharikah (Musharakah) and Modern Corporations',
-      'AAOIFI Shariah Standard No. 9: Ijarah and Ijarah Muntahia Bittamleek',
-      'Al Rayan Bank: Guide to Home Purchase Plans, 2024',
-      'Guidance Residential: Understanding the Co-ownership Model, 2023',
-      'Islamic Finance Council UK (UKIFC): Retail Islamic Finance Report, 2024'
-    ]
-  },
-  {
-    id: 'halal-stocks-screening',
-    title: 'How to Screen Stocks for Halal Investing: A Step-by-Step Guide',
-    description: 'Learn the exact criteria used by Islamic scholars and Shariah-compliant funds to evaluate whether individual stocks are permissible for Muslim investors.',
-    category: 'Investments',
-    author: 'Ustadh Bilal Philips',
-    authorInitials: 'BP',
-    date: 'November 15, 2024',
-    readTime: '8 min read',
-    verdict: 'Halal',
-    icon: '📈',
-    tags: ['Stocks', 'Screening', 'Portfolio'],
-    featured: false,
-    content: `
-      <p>Investing in the stock market is not inherently haram in Islamic law. Owning a share of a legitimate business — participating in its profits and losses — is fundamentally consistent with the Islamic economic model that encourages risk-sharing and the productive use of capital.</p>
-
-      <p>However, the modern stock market contains companies across every industry, including many involved in prohibited activities. The challenge for Muslim investors is distinguishing the permissible from the impermissible — and this is where stock screening comes in.</p>
-
-      <h2>The Two Categories of Screening</h2>
-      <p>Islamic stock screening involves two distinct levels of analysis:</p>
-
-      <div class="highlight-box">
-        <strong>1. Business Activity Screening (Qualitative)</strong> — Does the company's primary business involve prohibited activities?<br><br>
-        <strong>2. Financial Ratio Screening (Quantitative)</strong> — Even if the business is permissible, does the company's financial structure comply with Islamic finance principles?
-      </div>
-
-      <h2>Step 1: Business Activity Screening</h2>
-      <p>The first and most fundamental test. A company must be immediately excluded if its primary business involves:</p>
-
-      <h3>Absolutely Prohibited (Hard Exclusions)</h3>
-      <ul>
-        <li>Alcohol production, distribution, or retail</li>
-        <li>Pork and non-halal meat production</li>
-        <li>Conventional banking and interest-based financial services</li>
-        <li>Gambling and betting operations</li>
-        <li>Adult entertainment and pornography</li>
-        <li>Weapons manufacturing (particularly weapons targeting civilians)</li>
-        <li>Tobacco products</li>
-      </ul>
-
-      <h3>The "Tolerable" Grey Areas</h3>
-      <p>Most Shariah boards allow investment in companies where prohibited activities represent a minor portion of revenue, subject to financial screening. A hotel chain that earns 3% revenue from alcohol may be permissible; one that earns 30% would not be.</p>
-
-      <blockquote>
-        <p>"The principle is that if the haram activity is incidental and not the core of the business, scholars have generally permitted investment with purification of the relevant portion of dividends." — AAOIFI Shariah Standard No. 21</p>
-      </blockquote>
-
-      <h2>Step 2: Financial Ratio Screening</h2>
-      <p>Even companies with permissible business activities must pass financial filters to ensure they are not deeply involved in interest-based financing. The three key ratios are:</p>
-
-      <h3>1. Debt-to-Assets Ratio (Leverage Screen)</h3>
-      <ul>
-        <li>Interest-bearing debt must be less than 33% of total assets (most common standard)</li>
-        <li>Some scholars use 30% or even 25% as their threshold</li>
-        <li>Rationale: Excessive debt indicates heavy reliance on riba-based financing</li>
-      </ul>
-
-      <h3>2. Interest Income Screen</h3>
-      <ul>
-        <li>Interest income (and other non-compliant income) must be less than 5% of total revenue</li>
-        <li>Even Apple and Amazon earn some interest on their cash reserves — this small amount is generally tolerated</li>
-        <li>Dividends attributable to this portion should be purified (donated to charity)</li>
-      </ul>
-
-      <h3>3. Receivables Screen</h3>
-      <ul>
-        <li>Accounts receivable and cash must be less than 70-90% of total assets (depending on the standard used)</li>
-        <li>This ensures the stock represents ownership in real assets, not just paper claims</li>
-      </ul>
-
-      <h2>Step 3: Dividend Purification</h2>
-      <p>Even after passing screening, if a company earns some prohibited income, the investor must purify their dividends. This involves:</p>
-      <ol>
-        <li>Calculating the percentage of non-compliant income to total revenue</li>
-        <li>Applying that percentage to your dividend received</li>
-        <li>Donating that amount to charity (without expecting reward)</li>
-      </ol>
-
-      <p>For example, if a company earns 2% of revenue from interest and you receive £500 in dividends, you would donate £10 to charity as purification.</p>
-
-      <h2>Useful Screening Tools</h2>
-      <p>Several platforms make Islamic stock screening accessible:</p>
-      <ul>
-        <li><strong>Zoya</strong> — iOS/Android app with AAOIFI-compliant screening of US stocks</li>
-        <li><strong>Musaffa</strong> — Comprehensive global stock screening platform</li>
-        <li><strong>IdealRatings</strong> — Institutional-grade Islamic index construction</li>
-        <li><strong>Saturna Capital</strong> — Offers pre-screened halal mutual funds (AMANA funds)</li>
-        <li><strong>Wahed Invest</strong> — Robo-advisor with fully Shariah-compliant portfolios</li>
-      </ul>
-
-      <h2>Major Islamic Indices</h2>
-      <p>For passive investors, several major indices apply Islamic screening:</p>
-      <ul>
-        <li>MSCI Islamic Index Series (widely used by Islamic ETFs)</li>
-        <li>Dow Jones Islamic Market Index (DJIMI)</li>
-        <li>S&P Shariah Indices</li>
-        <li>FTSE Global Islamic Index Series</li>
-      </ul>
-
-      <h2>Conclusion</h2>
-      <p>Halal stock investing is achievable with the right tools and knowledge. The key is applying both qualitative business screening and quantitative financial ratio screening consistently. Use established screening platforms, consult Shariah-compliant fund methodologies, and when in doubt, consult a qualified Islamic finance scholar.</p>
-
-      <p>The reward is the ability to grow your wealth in a manner consistent with your faith — participating in the success of halal businesses while maintaining your Islamic financial principles.</p>
-    `,
-    references: [
-      'AAOIFI Shariah Standard No. 21: Financial Papers (Stocks)',
-      'DJIMI Methodology and Screening Criteria, S&P Global, 2023',
-      'Mufti Faraz Adam: Shariah Screening of Equities, Amanah Finance Consultancy',
-      'MSCI Islamic Index Methodology, MSCI Inc., 2024',
-      'Zoya App: Shariah Screening Methodology Documentation, 2024'
-    ]
-  },
-  {
-    id: 'zakat-on-investments',
-    title: 'Zakat on Investments: Stocks, Gold, Property, and Crypto',
-    description: 'A detailed guide on how to calculate and pay zakat on different types of investments, including modern asset classes that classical scholars never encountered.',
-    category: 'Zakat & Charity',
-    author: 'Mufti Menk',
-    authorInitials: 'MM',
-    date: 'October 30, 2024',
-    readTime: '7 min read',
-    verdict: 'Halal',
-    icon: '💰',
-    tags: ['Zakat', 'Calculation', 'Investments'],
-    featured: false,
-    content: `
-      <p>Zakat is one of the five pillars of Islam — an obligatory act of worship that purifies wealth and redistributes it to those in need. While the classical fiqh texts provide clear guidance on zakat for traditional assets like gold, silver, and trade goods, modern Muslims face the challenge of applying these principles to contemporary investment vehicles.</p>
-
-      <p>This guide provides clear, scholarly-backed guidance on zakat calculation for the most common modern investment types.</p>
-
-      <h2>The Basic Rules of Zakat on Wealth</h2>
-      <p>Before examining specific assets, let's establish the foundational principles:</p>
-
-      <div class="highlight-box">
-        <strong>Nisab (Minimum Threshold):</strong> Zakat is only due when your total wealth exceeds the nisab. The nisab is equivalent to 85 grams of gold or 595 grams of silver (as of writing, approximately £4,500 or $5,500 — check current gold prices).<br><br>
-        <strong>Hawl (Lunar Year):</strong> The wealth must have been held above the nisab for one full Islamic lunar year (approximately 354 days).<br><br>
-        <strong>Rate:</strong> 2.5% of all zakatable wealth is due annually.
-      </div>
-
-      <h2>Zakat on Gold and Silver</h2>
-      <p>Gold and silver are the most straightforward assets for zakat calculation:</p>
-      <ul>
-        <li><strong>Physical gold/silver:</strong> 2.5% of the current market value</li>
-        <li><strong>Gold jewelry worn regularly:</strong> Scholars differ — Hanafi madhab says zakat is due on all gold/silver; other madhabs exempt jewelry in regular use</li>
-        <li><strong>Gold ETFs:</strong> Treated as physical gold — 2.5% of market value</li>
-      </ul>
-
-      <h2>Zakat on Stocks</h2>
-      <p>This is one of the most complex areas in contemporary zakat scholarship. There are two main scholarly positions:</p>
-
-      <h3>Position 1: Zakat on Trade Value (Majority View)</h3>
-      <p>If you are an active trader (regularly buying and selling stocks for profit), your entire stock portfolio is treated as trade goods. Zakat is due at 2.5% of the market value of all shares held at your zakat date.</p>
-
-      <h3>Position 2: Zakat on Underlying Assets (Minority View)</h3>
-      <p>If you are a long-term investor, some scholars say you should look through to the company's underlying zakatable assets (cash, receivables, inventory) and pay zakat only on your proportional share of those.</p>
-
-      <blockquote>
-        <p>"The scholarly consensus leans toward treating stocks as trade goods and paying 2.5% on their market value — this is simpler and more prudent." — Sheikh Yusuf DeLorenzo, Shariah Board, Dow Jones Islamic Market Index</p>
-      </blockquote>
-
-      <p><strong>Practical guidance:</strong> Most modern Islamic scholars and zakat calculators recommend paying 2.5% on the current market value of your stock portfolio on your designated zakat date. This is the safest and most straightforward approach.</p>
-
-      <h2>Zakat on Cryptocurrency</h2>
-      <p>Cryptocurrency is treated similarly to trade goods by most contemporary scholars:</p>
-      <ul>
-        <li>2.5% of the current market value of all cryptocurrency holdings</li>
-        <li>Value is calculated on your zakat date using the prevailing market rate</li>
-        <li>Holdings must have exceeded the nisab for one full lunar year</li>
-        <li>Staking rewards and mining income: treated as income and subject to zakat immediately upon receipt (no hawl required, per some scholars)</li>
-      </ul>
-
-      <h2>Zakat on Property</h2>
-      <p>Real estate zakat depends heavily on the purpose of ownership:</p>
-
-      <h3>Personal Residence</h3>
-      <p>Your primary home is <strong>not</strong> subject to zakat. This is a clear, unanimous ruling across all madhabs.</p>
-
-      <h3>Rental Property (Investment)</h3>
-      <ul>
-        <li>The property itself (the bricks and mortar) is NOT subject to zakat</li>
-        <li>Rental income received IS subject to zakat once you have held it above the nisab for a hawl</li>
-        <li>Cash savings from rental income accumulate with other cash for zakat purposes</li>
-      </ul>
-
-      <h3>Property Held for Resale (Trade Goods)</h3>
-      <ul>
-        <li>If you purchased a property explicitly to resell it, it is treated as trade goods</li>
-        <li>2.5% of the current market value is due as zakat</li>
-      </ul>
-
-      <h2>Zakat on Pension and Retirement Funds</h2>
-      <p>This is another area of scholarly discussion:</p>
-      <ul>
-        <li>If you have full access and control of the funds: treat as regular savings, pay 2.5%</li>
-        <li>If funds are locked until retirement age: many scholars say zakat is due only when funds become accessible</li>
-        <li>Company pension contributions: consult a scholar for personalized guidance</li>
-      </ul>
-
-      <h2>How to Calculate Your Total Zakat</h2>
-      <ol>
-        <li>Choose a consistent zakat date (e.g., the first day of Ramadan each year)</li>
-        <li>List all zakatable assets: cash, gold, stocks, crypto, business inventory, receivables</li>
-        <li>Deduct short-term liabilities (bills due within one month, immediate debts)</li>
-        <li>If the net amount exceeds the nisab, pay 2.5%</li>
-        <li>Ensure payment reaches eligible recipients (the eight categories mentioned in Surah At-Tawbah, 9:60)</li>
-      </ol>
-
-      <h2>Recommended Zakat Calculators</h2>
-      <ul>
-        <li>National Zakat Foundation (NZF) — UK-based, scholar-supervised calculator</li>
-        <li>Zakat Foundation of America</li>
-        <li>Islamic Relief Zakat Calculator</li>
-        <li>Muslim Aid Zakat Calculator</li>
-      </ul>
-
-      <p>Remember: when in doubt about whether an asset is zakatable, it is better to pay zakat on it. The Prophet Muhammad ﷺ said, "Give zakat on your wealth, for it is a purification that purifies you." — Ahmad</p>
-    `,
-    references: [
-      'AAOIFI Shariah Standard No. 35: Zakah',
-      'Sheikh Yusuf Al-Qaradawi: Fiqh al-Zakah (Jurisprudence of Zakat)',
-      'National Zakat Foundation UK: Contemporary Zakat Issues, 2023',
-      'Mufti Faraz Adam: Modern Day Zakat Issues, Amanah Finance, 2022',
-      'Surah At-Tawbah, 9:60 — The Eight Categories of Zakat Recipients'
-    ]
-  },
-  {
-    id: 'day-trading-haram',
-    title: 'Is Day Trading Haram? Understanding Maysir in Modern Markets',
-    description: 'Many Muslims engage in day trading without realizing it may cross into forbidden territory. We examine the Islamic legal perspective on short-term speculative trading.',
-    category: 'Halal vs Haram',
-    author: 'Dr. Yusuf Al-Qardawi',
-    authorInitials: 'YQ',
-    date: 'October 15, 2024',
-    readTime: '6 min read',
-    verdict: 'Haram',
-    icon: '📉',
-    tags: ['Day Trading', 'Maysir', 'Speculation'],
-    featured: false,
-    content: `
-      <p>Day trading — the practice of buying and selling financial instruments within the same trading day to profit from short-term price movements — has exploded in popularity since the rise of commission-free trading apps. For Muslim investors, the question is urgent: does this practice cross into the territory of maysir (gambling) that Islam explicitly prohibits?</p>
-
-      <p>After careful analysis of the relevant Islamic legal principles, the scholarly majority's position is clear: pure speculative day trading, as practiced by most retail traders, is <strong>not permissible</strong> in Islamic law.</p>
-
-      <h2>What is Day Trading?</h2>
-      <p>Day trading involves:</p>
-      <ul>
-        <li>Opening and closing positions within the same trading session</li>
-        <li>Profiting primarily from price fluctuations, not business performance</li>
-        <li>Often using technical analysis, charts, and market momentum</li>
-        <li>Frequently using leverage (borrowed money) to amplify positions</li>
-        <li>Creating no real economic value — wealth transfers from losers to winners</li>
-      </ul>
-
-      <h2>The Islamic Legal Analysis</h2>
-
-      <h3>1. The Maysir Problem</h3>
-      <p>The Quran explicitly prohibits maysir:</p>
-
-      <blockquote>
-        <p>"O you who have believed, indeed, intoxicants, gambling, [sacrificing on] stone altars, and divining arrows are but defilement from the work of Satan, so avoid it that you may be successful." — Surah Al-Maidah, 5:90</p>
-      </blockquote>
-
-      <p>Day trading shares the core characteristic of gambling: <strong>one party's financial gain is directly another party's loss</strong>, without any creation of underlying value. The day trader who profits does so because another trader on the other side of the trade loses. This zero-sum dynamic is fundamentally similar to gambling.</p>
-
-      <h3>2. The Gharar Problem</h3>
-      <p>Day traders by definition are speculating on short-term price movements that are fundamentally unpredictable. Studies consistently show that 70-90% of day traders lose money. The excessive uncertainty (gharar) in these transactions, combined with the intent to profit purely from price speculation, makes this impermissible.</p>
-
-      <h3>3. The Riba Problem</h3>
-      <p>Most day traders use margin accounts — borrowing money from brokers to amplify their trading positions. This borrowed money comes with interest charges (financing fees), making leveraged day trading doubly impermissible: it involves both maysir AND riba.</p>
-
-      <div class="highlight-box">
-        <strong>Scholar's Verdict:</strong> The Islamic Fiqh Academy, AAOIFI, and the majority of contemporary Islamic finance scholars consider pure speculative day trading to be impermissible due to the combination of maysir (speculation), gharar (excessive uncertainty), and the frequent use of riba-based leverage.
-      </div>
-
-      <h2>Is ALL Short-Term Trading Haram?</h2>
-      <p>This is where important nuance is required. Not all short-term stock activity is haram:</p>
-
-      <h3>Generally Permissible (if other conditions are met)</h3>
-      <ul>
-        <li>Purchasing shares in Shariah-compliant companies for genuine ownership</li>
-        <li>Selling shares when you believe the business is overvalued (based on fundamentals)</li>
-        <li>Responding to material company news or changes in business outlook</li>
-        <li>Rebalancing a portfolio based on investment principles</li>
-      </ul>
-
-      <h3>Generally Impermissible</h3>
-      <ul>
-        <li>Trading solely based on chart patterns without regard to business fundamentals</li>
-        <li>Momentum trading — buying simply because the price is going up</li>
-        <li>Short selling (selling shares you don't own)</li>
-        <li>Forex trading with overnight interest (swap fees)</li>
-        <li>CFDs (Contracts for Difference) — these are not genuine ownership</li>
-        <li>Options and futures (in most forms)</li>
-      </ul>
-
-      <h2>The Difference Between Investing and Speculation</h2>
-      <p>Islam encourages the productive use of capital and legitimate risk-taking in business. The key distinction:</p>
-
-      <ul>
-        <li><strong>Investing:</strong> You become a part-owner of a real business. You share in its genuine profits and losses. The value of your investment is tied to real economic activity.</li>
-        <li><strong>Speculation:</strong> You are betting on price movements. Your profit or loss has no connection to underlying economic value creation. You contribute nothing to the business.</li>
-      </ul>
-
-      <h2>What Should Muslim Investors Do Instead?</h2>
-      <p>If you are attracted to day trading, consider these Shariah-compliant alternatives:</p>
-
-      <ol>
-        <li><strong>Long-term value investing</strong> in Shariah-screened stocks (minimum 1-year holding period recommended)</li>
-        <li><strong>Islamic ETFs</strong> tracking MSCI Islamic or Dow Jones Islamic indices</li>
-        <li><strong>Sukuk (Islamic bonds)</strong> for fixed-income exposure</li>
-        <li><strong>Real estate investment</strong> through REITs or direct property</li>
-        <li><strong>Halal business investment</strong> through ethical crowdfunding platforms</li>
+        <li>Use a Shariah screening tool or consult indices like the Dow Jones Islamic Market Index</li>
+        <li>Avoid companies whose primary business is haram</li>
+        <li>Check the financial ratios regularly</li>
+        <li>Purify your dividends by donating the impermissible portion</li>
+        <li>Invest with the intention of long-term ownership, not speculation</li>
       </ol>
 
       <h2>Conclusion</h2>
-      <p>The evidence against pure speculative day trading from an Islamic perspective is compelling. The maysir principle alone is sufficient to prohibit most day trading activity, and when combined with the widespread use of leverage (riba) and extreme uncertainty (gharar), the case becomes overwhelming.</p>
-
-      <p>This does not mean Muslim investors cannot participate in financial markets — quite the opposite. Islam fully supports productive investment in legitimate businesses. The key is ensuring your market activity is rooted in genuine ownership and business participation, not pure price speculation.</p>
-
-      <p>May Allah guide us to wealth that is halal, blessed, and beneficial to our communities.</p>
+      <p>Stock trading is conditionally halal. As long as Muslims follow proper Shariah screening, avoid speculative behavior, and purify their earnings, investing in stocks can be a legitimate and rewarding way to build wealth in accordance with Islamic principles.</p>
     `,
     references: [
-      'Islamic Fiqh Academy Resolution on Financial Markets, 1997',
-      'AAOIFI Shariah Standard No. 21: Financial Papers (Stocks)',
-      'Dr. Mohd Daud Bakar: Islamic Finance: Principles and Practices',
-      'Surah Al-Maidah, 5:90 — Quran',
-      'SEC Study on Day Trading Outcomes: 85% of Day Traders Lose Money, 2023'
+      "AAOIFI Shariah Standards on Investment",
+      "Dow Jones Islamic Market Index Methodology",
+      "Dr. Monzer Kahf — 'Islamic Finance: Principles and Practice'",
+      "Quran 2:275 — On the permissibility of trade"
     ]
   },
   {
-    id: 'islamic-savings-accounts',
-    title: 'Islamic Savings Accounts: How They Work and the Best Options in 2024',
-    description: 'Discover how Shariah-compliant savings accounts use profit-sharing instead of interest, and compare the best Islamic bank savings products available today.',
-    category: 'Banking & Loans',
-    author: 'Sheikh Mufti Ibrahim Hassan',
-    authorInitials: 'IH',
-    date: 'September 22, 2024',
-    readTime: '7 min read',
-    verdict: 'Halal',
-    icon: '🏦',
-    tags: ['Savings', 'Islamic Banking', 'Mudarabah'],
-    featured: false,
+    id: "conventional-mortgage-ruling",
+    title: "Are Conventional Mortgages Haram? Understanding Riba in Home Loans",
+    description: "A detailed analysis of why conventional mortgages involve riba (interest) and what halal alternatives exist for Muslim homebuyers.",
+    category: "Banking & Loans",
+    author: "Sheikh Yusuf Ibrahim",
+    date: "February 3, 2025",
+    verdict: "Haram",
+    icon: "🏠",
     content: `
-      <p>Keeping your money in a conventional savings account might seem like a minor matter, but for observant Muslims, the interest paid on such accounts is riba — strictly forbidden in Islamic law. Fortunately, Islamic banks have developed Shariah-compliant savings products that allow Muslims to save money and earn a return without violating their religious principles.</p>
+      <p>Buying a home is one of the most significant financial decisions in anyone's life. For Muslims, the question of how to finance a home purchase while avoiding riba (interest) is critically important. This article examines the ruling on conventional mortgages and explores halal alternatives.</p>
 
-      <h2>The Problem with Conventional Savings Accounts</h2>
-      <p>When you deposit money in a conventional savings account, the bank:</p>
-      <ol>
-        <li>Lends your money to other customers at a higher interest rate</li>
-        <li>Pays you a predetermined percentage of your balance as interest</li>
-        <li>Keeps the difference as profit</li>
-      </ol>
-      <p>This is the classic riba model — you earn money purely from the time-value of your money, without taking any risk or participating in any productive economic activity.</p>
+      <h2>What is Riba?</h2>
+      <p>Riba literally means "increase" or "excess." In Islamic finance, it refers to any guaranteed increase in a loan — essentially what modern finance calls "interest." The prohibition of riba is one of the clearest and most emphasized rulings in the Quran and Sunnah.</p>
 
-      <h2>How Islamic Savings Accounts Work</h2>
-      <p>Islamic savings accounts are typically structured using one of two contracts:</p>
+      <blockquote>"Allah has permitted trade and has forbidden riba (interest)." — Quran 2:275</blockquote>
 
-      <h3>1. Mudarabah (Profit-Sharing)</h3>
-      <p>The most common structure for Islamic savings accounts:</p>
-      <ul>
-        <li>You provide capital (as the Rabb al-Mal — capital provider)</li>
-        <li>The bank manages the funds (as the Mudarib — entrepreneur)</li>
-        <li>Profits are shared according to a pre-agreed ratio (e.g., 70% to customer, 30% to bank)</li>
-        <li>If the bank makes a loss, you bear the financial loss; the bank loses its time and effort</li>
-        <li>The return is not guaranteed — it varies based on actual bank performance</li>
-      </ul>
-
-      <div class="highlight-box">
-        <strong>Key distinction from interest:</strong> In Mudarabah, your return is genuinely linked to real economic performance. If the bank's investments perform well, you earn more. If they perform poorly, you earn less (or potentially nothing). This genuine risk-sharing is what makes it Shariah-compliant.
+      <div class="info-box warning">
+        <p><strong>🚫 Clear Ruling:</strong> The overwhelming majority of scholars agree that conventional mortgages involve riba and are therefore haram. The Prophet (peace be upon him) cursed the one who pays interest, the one who receives it, the one who writes it, and the two witnesses — saying they are all equal in sin (Sahih Muslim).</p>
       </div>
 
-      <h3>2. Wadiah (Safekeeping)</h3>
-      <p>A simpler structure for current/checking accounts:</p>
+      <h2>Why Conventional Mortgages are Considered Haram</h2>
+      <p>A conventional mortgage is fundamentally a loan with interest. The bank lends you money to buy a house, and you pay back significantly more than you borrowed over 15-30 years. This excess is riba, regardless of what name it is given.</p>
+
       <ul>
-        <li>You deposit money for safekeeping (amanah)</li>
-        <li>The bank guarantees the return of your full deposit</li>
-        <li>The bank may use the funds but with your permission</li>
-        <li>The bank may (but is not obligated to) give you a gift (hibah) from profits</li>
-        <li>You cannot demand a specific return — any payment is voluntary from the bank</li>
+        <li>You borrow a fixed amount from the bank</li>
+        <li>You repay a significantly larger amount due to interest charges</li>
+        <li>The bank profits from lending money — not from any real economic activity</li>
+        <li>This fits the exact definition of riba al-nasi'ah (riba of delay)</li>
       </ul>
 
-      <h2>What to Look for in an Islamic Savings Account</h2>
-      <ul>
-        <li><strong>Shariah Supervisory Board:</strong> Ensure the bank has an independent, qualified SSB certifying its products</li>
-        <li><strong>Profit-sharing ratio:</strong> Compare the expected profit rates across providers</li>
-        <li><strong>Deposit protection:</strong> In the UK, FSCS protection applies to Islamic bank deposits like any other</li>
-        <li><strong>Access:</strong> Some accounts have notice periods; others offer instant access</li>
-        <li><strong>Transparency:</strong> The bank should clearly explain how profits are calculated and distributed</li>
-      </ul>
+      <h2>Halal Alternatives for Home Financing</h2>
 
-      <h2>Best Islamic Savings Accounts in 2024</h2>
+      <h3>1. Murabaha (Cost-Plus Financing)</h3>
+      <p>The bank purchases the property and sells it to you at a higher price, payable in installments. The profit margin is agreed upon upfront. While the end result may seem similar, the structure involves a real sale — the bank takes ownership risk, even if briefly.</p>
 
-      <h3>United Kingdom</h3>
-      <ul>
-        <li><strong>Al Rayan Bank:</strong> Expected profit rate around 5.0% on fixed-term deposits. UK's oldest Islamic bank. FSCS protected up to £85,000.</li>
-        <li><strong>Gatehouse Bank:</strong> Competitive rates on notice and fixed-term savings. Mudarabah-based.</li>
-        <li><strong>Abu Dhabi Islamic Bank UK:</strong> Profit-sharing savings with competitive rates for larger deposits.</li>
-      </ul>
+      <h3>2. Ijara (Lease-to-Own)</h3>
+      <p>The bank buys the property and leases it to you. A portion of your monthly payment goes toward rent, and another portion goes toward gradually purchasing equity in the property. Over time, you own the home entirely.</p>
 
-      <h3>United States</h3>
-      <ul>
-        <li><strong>University Islamic Financial:</strong> Profit-sharing savings products for US customers</li>
-        <li><strong>Saturna Capital:</strong> Shariah-compliant investment accounts (not traditional savings)</li>
-      </ul>
+      <h3>3. Diminishing Musharakah</h3>
+      <p>You and the bank co-own the property. You gradually buy out the bank's share while paying rent on the portion you don't own. This is considered by many scholars to be the most Shariah-compliant model.</p>
 
-      <h3>Global Options</h3>
-      <ul>
-        <li><strong>Wahed Invest:</strong> Digital Islamic investment accounts available globally</li>
-        <li><strong>Niyah:</strong> UK-based Islamic financial super-app with savings features</li>
-      </ul>
-
-      <h2>Understanding Profit Rate vs. Interest Rate</h2>
-      <p>A common question: "If the profit rate on my Islamic savings account is similar to the interest rate on a conventional account, is it really different?"</p>
-      <p>Yes — the key difference is not the number itself, but the contractual structure:</p>
-      <ul>
-        <li>Interest: Guaranteed, predetermined, not linked to actual performance</li>
-        <li>Profit: Variable, based on actual bank performance, with genuine risk-sharing</li>
-      </ul>
-      <p>In practice, Islamic banks do refer to conventional benchmark rates (like SONIA in the UK) when setting their expected profit rates — this is a practical market reality that most scholars accept as long as the underlying contract structure is genuinely Shariah-compliant.</p>
+      <h2>The Necessity Exception</h2>
+      <p>Some scholars, including the European Council for Fatwa and Research, have issued a minority opinion that Muslims living in non-Muslim countries where Islamic financing is unavailable may use conventional mortgages under the principle of necessity (darurah). However, this is a minority position and is disputed by many scholars.</p>
 
       <h2>Conclusion</h2>
-      <p>Islamic savings accounts provide a genuine, Shariah-compliant alternative to conventional interest-bearing accounts. With fully regulated Islamic banks now operating in major markets, there is no reason for Muslims to keep their savings in conventional riba-based accounts. The returns are competitive, the deposits are protected, and most importantly, your savings are managed in accordance with Islamic principles.</p>
+      <p>Conventional mortgages are haram due to the clear involvement of riba. Muslims should make every effort to find halal alternatives such as Islamic banks offering Murabaha, Ijara, or Diminishing Musharakah products. Where these options exist, there is no excuse to resort to interest-based financing.</p>
     `,
     references: [
-      'AAOIFI Shariah Standard No. 3: Mudarabah',
-      'Al Rayan Bank: Understanding Islamic Savings, 2024',
-      'Islamic Finance Council UK: Consumer Islamic Finance Guide',
-      'Financial Services Compensation Scheme: Islamic Banks and FSCS, 2023',
-      'Bank of England: Islamic Finance in the United Kingdom, 2022'
+      "Quran 2:275-280 — Verses on the prohibition of riba",
+      "Sahih Muslim — Hadith on the curse of riba",
+      "European Council for Fatwa and Research — Resolution on Mortgages",
+      "AAOIFI Shariah Standard No. 8 — Murabaha",
+      "Dr. Muhammad Taqi Usmani — 'An Introduction to Islamic Finance'"
     ]
   },
   {
-    id: 'halal-investment-funds',
-    title: 'The Best Halal Investment Funds and ETFs for Muslim Investors in 2024',
-    description: 'A curated guide to Shariah-compliant ETFs, mutual funds, and robo-advisors — with performance data and fee comparison to help you choose wisely.',
-    category: 'Investments',
-    author: 'Ustadh Bilal Philips',
-    authorInitials: 'BP',
-    date: 'September 8, 2024',
-    readTime: '10 min read',
-    verdict: 'Halal',
-    icon: '💹',
-    tags: ['ETF', 'Mutual Funds', 'Portfolio'],
-    featured: false,
+    id: "cryptocurrency-islamic-view",
+    title: "Is Cryptocurrency Halal or Haram? An Islamic Perspective",
+    description: "Examining Bitcoin, Ethereum, and other cryptocurrencies through the lens of Islamic jurisprudence — the arguments for and against.",
+    category: "Crypto",
+    author: "Dr. Fatima Hassan",
+    date: "March 10, 2025",
+    verdict: "Conditional",
+    icon: "₿",
     content: `
-      <p>For Muslim investors who want market exposure without the burden of individually screening each stock, Shariah-compliant funds and ETFs offer an elegant solution. These products do the hard work of screening for you, maintaining portfolios that comply with Islamic finance principles.</p>
+      <p>Cryptocurrency has taken the financial world by storm, and Muslim investors are eager to understand whether digital currencies like Bitcoin and Ethereum are permissible under Islamic law. The topic has generated significant debate among scholars, with opinions ranging from complete prohibition to conditional permissibility.</p>
 
-      <h2>Types of Halal Funds Available</h2>
-      <p>The Islamic finance industry has developed several types of collective investment vehicles:</p>
-
-      <h3>1. Islamic ETFs (Exchange-Traded Funds)</h3>
-      <p>ETFs that track Islamic indices, automatically excluding non-compliant companies. They offer:</p>
+      <h2>Understanding Cryptocurrency</h2>
+      <p>Cryptocurrency is a decentralized digital currency that uses blockchain technology for secure transactions. Unlike conventional money, it is not issued by any central authority. Key characteristics include:</p>
       <ul>
-        <li>Low fees (typically 0.4-0.85% annual expense ratio)</li>
-        <li>Instant diversification</li>
-        <li>Stock exchange liquidity</li>
-        <li>Transparency of holdings</li>
+        <li>Decentralized — no central bank or government controls it</li>
+        <li>Uses cryptographic technology for security</li>
+        <li>Supply is often limited (e.g., Bitcoin is capped at 21 million)</li>
+        <li>Transactions are recorded on a public ledger (blockchain)</li>
       </ul>
 
-      <h3>2. Islamic Mutual Funds</h3>
-      <p>Actively managed funds with Islamic mandates, run by professional fund managers. Higher fees but potential for outperformance through active security selection.</p>
+      <h2>Arguments That Crypto is Halal</h2>
+      <h3>1. It Functions as a Medium of Exchange</h3>
+      <p>Some scholars argue that cryptocurrency meets the definition of "mal" (property/wealth) in Islamic law because it has value, can be stored, and can be exchanged. If people accept it as payment, it can serve as a legitimate medium of exchange.</p>
 
-      <h3>3. Islamic Robo-Advisors</h3>
-      <p>Automated investment platforms that build and manage Shariah-compliant portfolios based on your risk profile.</p>
+      <h3>2. Blockchain Technology is Neutral</h3>
+      <p>The underlying technology is simply a tool — like the internet itself. It can be used for halal or haram purposes. The technology itself is not the issue.</p>
 
-      <h2>Top Islamic ETFs</h2>
+      <h3>3. No Riba Involved</h3>
+      <p>Basic cryptocurrency transactions do not involve interest. Buying Bitcoin and holding it, or using it for trade, does not inherently involve riba.</p>
 
-      <h3>iShares MSCI World Islamic UCITS ETF (ISWD)</h3>
-      <ul>
-        <li><strong>Index:</strong> MSCI World Islamic Index</li>
-        <li><strong>Expense Ratio:</strong> 0.60%</li>
-        <li><strong>Holdings:</strong> ~700 global developed market stocks</li>
-        <li><strong>Available on:</strong> London Stock Exchange</li>
-        <li><strong>Shariah Advisor:</strong> Ratings Intelligence Partners</li>
-      </ul>
-
-      <h3>iShares MSCI Emerging Markets Islamic UCITS ETF (ISEM)</h3>
-      <ul>
-        <li><strong>Index:</strong> MSCI Emerging Markets Islamic Index</li>
-        <li><strong>Expense Ratio:</strong> 0.85%</li>
-        <li><strong>Exposure:</strong> Shariah-compliant EM stocks</li>
-        <li><strong>Available on:</strong> London Stock Exchange</li>
-      </ul>
-
-      <h3>Wahed FTSE USA Shariah ETF (HLAL)</h3>
-      <ul>
-        <li><strong>Index:</strong> FTSE USA Shariah Index</li>
-        <li><strong>Expense Ratio:</strong> 0.50%</li>
-        <li><strong>Exchange:</strong> NASDAQ</li>
-        <li><strong>Focus:</strong> US large-cap Shariah-compliant stocks</li>
-      </ul>
-
-      <h3>SP Funds S&P 500 Sharia Industry Exclusions ETF (SPUS)</h3>
-      <ul>
-        <li><strong>Index:</strong> S&P 500 Shariah</li>
-        <li><strong>Expense Ratio:</strong> 0.45%</li>
-        <li><strong>Exchange:</strong> NYSE Arca</li>
-        <li><strong>Advantage:</strong> Lowest-cost Shariah ETF available in the US</li>
-      </ul>
-
-      <h2>Top Islamic Mutual Funds</h2>
-
-      <h3>AMANA Income Fund (AMANX)</h3>
-      <ul>
-        <li><strong>Manager:</strong> Saturna Capital</li>
-        <li><strong>Expense Ratio:</strong> 1.04%</li>
-        <li><strong>Strategy:</strong> Dividend-focused, large-cap Islamic stocks</li>
-        <li><strong>Track Record:</strong> One of the oldest Islamic funds in the US (est. 1986)</li>
-      </ul>
-
-      <h3>AMANA Growth Fund (AMAGX)</h3>
-      <ul>
-        <li><strong>Manager:</strong> Saturna Capital</li>
-        <li><strong>Expense Ratio:</strong> 0.95%</li>
-        <li><strong>Strategy:</strong> Growth-oriented Islamic stock selection</li>
-      </ul>
-
-      <h2>Islamic Robo-Advisors</h2>
-
-      <h3>Wahed Invest</h3>
-      <ul>
-        <li>Available in US, UK, and multiple other markets</li>
-        <li>Fully Shariah-compliant, supervised by independent Shariah board</li>
-        <li>Annual fee: 0.39-0.49% depending on balance</li>
-        <li>Invests in a mix of Islamic ETFs, Sukuk, and gold</li>
-        <li>Minimum investment: $100 / £100</li>
-      </ul>
-
-      <h3>Niyah (UK)</h3>
-      <ul>
-        <li>UK-focused Islamic investment app</li>
-        <li>Certified by scholars at Darul Iftaa Birmingham</li>
-        <li>Transparent screening methodology</li>
-        <li>Competitive annual fees</li>
-      </ul>
-
-      <h2>How to Choose the Right Fund</h2>
-      <p>Consider these factors when selecting an Islamic investment fund:</p>
-
-      <ol>
-        <li><strong>Shariah Certification:</strong> Who is the Shariah supervisory board? Are they reputable, independent scholars?</li>
-        <li><strong>Expense Ratio:</strong> Fees compound over time — lower is generally better for long-term investors</li>
-        <li><strong>Diversification:</strong> Geographic and sector diversification reduces concentration risk</li>
-        <li><strong>Liquidity:</strong> ETFs offer daily liquidity; some mutual funds have redemption restrictions</li>
-        <li><strong>Track Record:</strong> How has the fund performed over 3, 5, and 10 year periods?</li>
-        <li><strong>Dividend Purification:</strong> Does the fund handle purification automatically?</li>
-      </ol>
-
-      <h2>Conclusion</h2>
-      <p>The halal investment fund universe has expanded dramatically over the past decade. Whether you prefer passive index-tracking ETFs, actively managed mutual funds, or automated robo-advisory services, there are excellent Shariah-compliant options available. Start with low-cost ETFs if you are beginning your investment journey, and consider adding specialized funds as your portfolio grows.</p>
-    `,
-    references: [
-      'iShares by BlackRock: Islamic ETF Product Documentation, 2024',
-      'Saturna Capital: AMANA Funds Annual Report, 2023',
-      'Wahed Invest: Shariah Supervisory Board Certification, 2024',
-      'FTSE Russell: FTSE Shariah Index Series Methodology, 2024',
-      'S&P Global: S&P Shariah Indices Methodology, 2024'
-    ]
-  },
-  {
-    id: 'riba-in-everyday-life',
-    title: 'Riba in Everyday Life: Recognizing and Avoiding Interest in Modern Finance',
-    description: 'Most Muslims know riba is forbidden, but many encounter it unknowingly in credit cards, buy-now-pay-later schemes, and even some insurance products. A practical guide.',
-    category: 'Halal vs Haram',
-    author: 'Dr. Yusuf Al-Qardawi',
-    authorInitials: 'YQ',
-    date: 'August 20, 2024',
-    readTime: '8 min read',
-    verdict: 'Haram',
-    icon: '⚠️',
-    tags: ['Riba', 'Credit Cards', 'BNPL'],
-    featured: false,
-    content: `
-      <p>Riba — the Arabic term broadly translated as "interest" or "usury" — is one of the most serious prohibitions in Islamic law. The Quran warns that those who deal in riba are at war with Allah and His Messenger (2:279). Yet in modern life, riba is embedded so deeply in financial systems that many Muslims encounter it without even realizing it.</p>
-
-      <p>This guide helps you identify riba in its many modern forms and provides practical alternatives for each.</p>
-
-      <h2>What Exactly is Riba?</h2>
-      <p>Islamic scholars identify two main types of riba:</p>
-
-      <h3>Riba al-Nasiah (Interest on Loans)</h3>
-      <p>Any predetermined increase on a loan over and above the principal amount. This is the most common form of riba in modern life — the interest charged on mortgages, car loans, credit cards, and personal loans.</p>
-
-      <h3>Riba al-Fadl (Exchange Riba)</h3>
-      <p>The exchange of goods of the same type in unequal quantities, or with a time delay. This is more relevant to commodity trading and currency exchange.</p>
-
-      <blockquote>
-        <p>"Allah has permitted trade and has forbidden riba. Whoever receives an admonition from his Lord and desists may have what has passed, and his affair rests with Allah. But whoever returns to it — those are the companions of the Fire; they will abide therein eternally." — Surah Al-Baqarah, 2:275</p>
-      </blockquote>
-
-      <h2>Riba in Credit Cards</h2>
-      <p>This is where many Muslims unknowingly engage with riba. The key distinction:</p>
-
-      <div class="highlight-box">
-        <strong>Halal use:</strong> Using a credit card and paying the FULL balance before the due date. You are essentially using the card as a deferred payment tool with no interest charged.<br><br>
-        <strong>Haram use:</strong> Carrying a balance from month to month, thereby paying interest on the outstanding amount. Any interest payment — even a small one — is riba.
+      <div class="info-box">
+        <p><strong>✅ Scholarly Support:</strong> Dr. Monzer Kahf and several scholars from the Islamic Finance Advisory Board have argued that Bitcoin can be halal when used as a currency or long-term investment, provided certain conditions are met.</p>
       </div>
 
-      <h3>The Annual Fee Question</h3>
-      <p>Annual fees on credit cards are permissible — they are a fee for a service, not interest on a loan. Many reward cards charge annual fees, and using such cards (while paying in full each month) is generally considered permissible.</p>
+      <h2>Arguments That Crypto is Haram</h2>
+      <h3>1. Excessive Speculation (Gharar)</h3>
+      <p>The extreme price volatility of most cryptocurrencies raises serious concerns about gharar (uncertainty/speculation). When people buy crypto primarily hoping for price increases, it can resemble gambling.</p>
 
-      <h3>Cashback and Rewards</h3>
-      <p>Cashback and points rewards earned from spending are generally considered permissible by most contemporary scholars, as they are promotional incentives from the card company, not interest income.</p>
+      <h3>2. No Intrinsic Value</h3>
+      <p>Some scholars argue that cryptocurrencies have no tangible underlying asset, making them unsuitable as money or property under Islamic law.</p>
 
-      <h2>Riba in Buy-Now-Pay-Later (BNPL)</h2>
-      <p>The explosion of BNPL services (Klarna, Afterpay, Affirm, etc.) has created new riba concerns:</p>
+      <h3>3. Used for Illicit Activities</h3>
+      <p>The anonymity of crypto transactions has made them popular for money laundering and other illegal activities, which are clearly haram.</p>
 
-      <ul>
-        <li><strong>0% installment plans:</strong> If there is genuinely no interest or hidden fees charged for the installment period — permissible</li>
-        <li><strong>Deferred interest plans:</strong> If interest accrues during the deferred period and is charged if not paid in full by the deadline — <strong>haram</strong></li>
-        <li><strong>Late payment fees:</strong> If late fees function as penalty interest — <strong>haram</strong></li>
-      </ul>
+      <div class="info-box warning">
+        <p><strong>🚫 Scholarly Opposition:</strong> The Grand Mufti of Egypt, Shawki Allam, has declared Bitcoin and similar currencies as haram. Turkey's Directorate of Religious Affairs has also ruled against cryptocurrency.</p>
+      </div>
 
-      <p>Read the fine print carefully. Many "0%" plans charge deferred interest that can be substantial.</p>
-
-      <h2>Riba in Insurance (Takaful vs. Conventional)</h2>
-      <p>Conventional insurance has elements that Islamic scholars consider impermissible:</p>
-      <ul>
-        <li><strong>Gharar (uncertainty):</strong> You pay premiums without knowing if you will ever claim</li>
-        <li><strong>Maysir (gambling):</strong> The insurance company profits when policyholders don't claim</li>
-        <li><strong>Riba:</strong> Conventional insurers invest premium income in interest-bearing instruments</li>
-      </ul>
-
-      <p>However, most contemporary Islamic scholars make a pragmatic exception for mandatory insurances (like car insurance required by law) while encouraging Muslims to use Takaful (Islamic insurance) alternatives where available.</p>
-
-      <h2>Riba in Overdrafts and Unauthorized Borrowing</h2>
-      <p>Overdraft facilities that charge interest are clearly riba. Options to consider:</p>
-      <ul>
-        <li>Maintain a sufficient buffer in your account to avoid overdrafts</li>
-        <li>Use Islamic bank accounts that don't offer interest-based overdrafts</li>
-        <li>If facing financial difficulty, seek qard hasan (benevolent loans) from family, community, or Islamic charitable organizations</li>
-      </ul>
-
-      <h2>Riba in Student Loans</h2>
-      <p>This is a nuanced area:</p>
-      <ul>
-        <li><strong>UK-style income-contingent repayments:</strong> Some scholars consider these closer to a graduate tax than a loan — the repayment amount is tied to income, not to a fixed debt with compound interest</li>
-        <li><strong>US student loans:</strong> These are clearly interest-bearing and most scholars would advise seeking alternatives (scholarships, halal financing, etc.)</li>
-      </ul>
-
-      <h2>Practical Steps to Minimize Riba in Your Life</h2>
+      <h2>Conditions for Permissibility</h2>
+      <p>Many scholars take a middle position, allowing cryptocurrency under certain conditions:</p>
       <ol>
-        <li>Audit your current financial products — identify any interest-bearing elements</li>
-        <li>Pay credit card balances in full every month, without exception</li>
-        <li>Switch to an Islamic bank for your main savings and current accounts</li>
-        <li>When taking out a loan, explore Islamic finance alternatives first</li>
-        <li>For insurance, explore Takaful options in your region</li>
-        <li>Build an emergency fund to avoid needing interest-based credit in emergencies</li>
+        <li>It must be used as an investment or currency, not for speculation/gambling</li>
+        <li>The specific cryptocurrency should have a real use case or utility</li>
+        <li>Avoid crypto staking platforms that pay guaranteed returns (resembles riba)</li>
+        <li>Do not invest more than you can afford to lose</li>
+        <li>Ensure the platform and specific token are not involved in haram activities</li>
       </ol>
 
       <h2>Conclusion</h2>
-      <p>Completely avoiding riba in the modern financial world requires conscious effort and planning. But it is entirely achievable. The Islamic finance industry has developed alternatives for virtually every conventional riba-based product. The first step is awareness — understanding where riba hides in everyday financial transactions.</p>
-
-      <p>May Allah protect us from what is forbidden and facilitate for us what is halal.</p>
+      <p>The ruling on cryptocurrency is nuanced and depends on how it is used. As a long-term investment in established coins with real utility, many scholars consider it permissible. However, speculative trading, meme coins, and interest-bearing crypto products should be avoided. Muslims should consult knowledgeable scholars and exercise caution.</p>
     `,
     references: [
-      'Surah Al-Baqarah, 2:275-280 — Quran',
-      'AAOIFI Shariah Standard No. 23: Agency',
-      'Islamic Finance Council UK: Consumer Guidance on Riba, 2023',
-      'Mufti Taqi Usmani: An Introduction to Islamic Finance',
-      'Dr. Monzer Kahf: Riba in Contemporary Applications, IIUM Journal of Economics'
+      "Dr. Monzer Kahf — Fatwa on Bitcoin (2018)",
+      "Dar al-Ifta al-Misriyyah — Ruling on Bitcoin",
+      "AAOIFI — Discussion Paper on Cryptocurrency",
+      "Mufti Faraz Adam — 'Is Bitcoin Halal?' Research Paper",
+      "Journal of Islamic Banking and Finance — Vol. 36"
+    ]
+  },
+  {
+    id: "zakat-calculation-guide",
+    title: "Complete Guide to Calculating Zakat on Modern Assets",
+    description: "Learn how to calculate zakat on savings, investments, gold, property, and business assets with practical examples.",
+    category: "Zakat & Charity",
+    author: "Dr. Ahmed Al-Rashid",
+    date: "April 5, 2025",
+    verdict: "Halal",
+    icon: "🤲",
+    content: `
+      <p>Zakat is one of the five pillars of Islam and a fundamental obligation for every Muslim who meets the nisab threshold. In today's complex financial world, calculating zakat requires understanding how it applies to modern assets. This guide provides a comprehensive overview.</p>
+
+      <h2>The Basics of Zakat</h2>
+      <p>Zakat is an annual obligation of 2.5% on qualifying wealth that has been held for one lunar year (hawl). It is not merely charity — it is a right that the poor have over the wealthy.</p>
+
+      <blockquote>"Take from their wealth a charity by which you purify them and cause them increase." — Quran 9:103</blockquote>
+
+      <h2>Nisab Threshold</h2>
+      <p>Nisab is the minimum amount of wealth a Muslim must possess before zakat becomes obligatory. It is calculated based on one of two standards:</p>
+      <ul>
+        <li><strong>Gold:</strong> 85 grams of gold (approximately $5,500-7,000 depending on market price)</li>
+        <li><strong>Silver:</strong> 595 grams of silver (approximately $400-500)</li>
+      </ul>
+
+      <div class="info-box">
+        <p><strong>✅ Best Practice:</strong> Most scholars recommend using the silver nisab, as it is lower and thus more people can fulfill this obligation. This ensures more people benefit from zakat distribution.</p>
+      </div>
+
+      <h2>Calculating Zakat on Different Assets</h2>
+
+      <h3>1. Cash and Savings</h3>
+      <p>All cash in bank accounts, savings accounts, and cash on hand is subject to zakat. Simply multiply your total cash holdings by 2.5%.</p>
+
+      <h3>2. Gold and Silver</h3>
+      <p>Gold and silver — whether jewelry, coins, or bars — are subject to zakat. Calculate the current market value and apply 2.5%. Note: there is scholarly disagreement about whether jewelry worn regularly by women is subject to zakat.</p>
+
+      <h3>3. Stocks and Investments</h3>
+      <p>For stocks held as investments, calculate zakat on the current market value of your portfolio. For stocks held for trading, the full market value is zakatable. For long-term investments, some scholars say zakat is only on the dividends received.</p>
+
+      <h3>4. Business Assets</h3>
+      <p>For business owners, zakat is due on inventory (goods for sale) and cash/receivables. Fixed assets (equipment, property used in business) are generally exempt.</p>
+
+      <h3>5. Rental Property</h3>
+      <p>Property held for rental income is not subject to zakat on its value — only the rental income saved is zakatable. Property held for resale (investment/flipping) is fully zakatable.</p>
+
+      <h2>What is NOT Subject to Zakat</h2>
+      <ul>
+        <li>Your primary residence</li>
+        <li>Personal vehicles</li>
+        <li>Furniture and personal belongings</li>
+        <li>Fixed assets used in business operations</li>
+      </ul>
+
+      <h2>Practical Zakat Calculation Example</h2>
+      <p>Suppose on your zakat due date you have:</p>
+      <ul>
+        <li>Savings account: $15,000</li>
+        <li>Cash on hand: $500</li>
+        <li>Gold jewelry: $3,000 market value</li>
+        <li>Stock portfolio: $20,000</li>
+        <li>Debts owed to you: $2,000</li>
+        <li>Less: debts you owe: -$5,000</li>
+      </ul>
+      <p><strong>Total zakatable wealth:</strong> $35,500<br>
+      <strong>Zakat due (2.5%):</strong> $887.50</p>
+
+      <h2>Conclusion</h2>
+      <p>Calculating zakat in the modern world requires diligence, but the principle remains simple: 2.5% on qualifying wealth held for one year. Set a consistent date, make a thorough inventory of your assets, and fulfill this blessed obligation with sincerity.</p>
+    `,
+    references: [
+      "Quran 9:103 — On the obligation of Zakat",
+      "Fiqh al-Zakat by Dr. Yusuf al-Qaradawi",
+      "AAOIFI Shariah Standard No. 35 — Zakat",
+      "IslamQA — Rulings on Zakat Calculation"
+    ]
+  },
+  {
+    id: "halal-vs-haram-investments",
+    title: "Halal vs Haram: A Clear Guide to Permissible Investments",
+    description: "A comprehensive breakdown of which investment types are halal, haram, or conditional according to Islamic scholars.",
+    category: "Halal vs Haram",
+    author: "Sheikh Yusuf Ibrahim",
+    date: "May 18, 2025",
+    verdict: "Halal",
+    icon: "⚖️",
+    content: `
+      <p>One of the most common questions Muslims ask about their finances is: "Is this investment halal?" With the proliferation of investment options available today, it's crucial to have a clear understanding of what Islamic law permits and prohibits.</p>
+
+      <h2>Core Principles of Halal Investing</h2>
+      <p>Islamic finance is built on several fundamental principles that guide all financial transactions:</p>
+      <ul>
+        <li><strong>No Riba (Interest):</strong> Any guaranteed return on a loan is prohibited</li>
+        <li><strong>No Gharar (Excessive Uncertainty):</strong> Contracts must be clear and transparent</li>
+        <li><strong>No Maysir (Gambling):</strong> Returns must come from real economic activity</li>
+        <li><strong>Ethical Screening:</strong> Cannot profit from industries harmful to society</li>
+        <li><strong>Risk Sharing:</strong> Both profit and loss should be shared between parties</li>
+      </ul>
+
+      <h2>Clearly Halal Investments</h2>
+
+      <h3>Real Estate</h3>
+      <p>Buying property — whether for personal use, rental income, or resale — is one of the most straightforward halal investments. Property is a tangible asset with real value.</p>
+
+      <h3>Shariah-Compliant Stocks</h3>
+      <p>Stocks that pass Shariah screening criteria (halal business activity, acceptable financial ratios) are permissible to invest in.</p>
+
+      <h3>Islamic Mutual Funds and ETFs</h3>
+      <p>These are professionally managed funds that only invest in Shariah-compliant assets. They undergo regular screening by Shariah boards.</p>
+
+      <h3>Halal Business Ownership</h3>
+      <p>Starting or investing in a business that provides halal goods and services is one of the best forms of halal investment.</p>
+
+      <div class="info-box">
+        <p><strong>✅ Key Principle:</strong> The best halal investments involve real economic activity, tangible assets, and shared risk. When your money is tied to real productivity, it aligns perfectly with Islamic principles.</p>
+      </div>
+
+      <h2>Clearly Haram Investments</h2>
+
+      <h3>Conventional Bonds</h3>
+      <p>Bonds are essentially loans that pay interest — pure riba. This includes government bonds, corporate bonds, and treasury bills.</p>
+
+      <h3>Conventional Banking Products</h3>
+      <p>Fixed deposits, savings accounts with interest, and CDs at conventional banks all involve riba.</p>
+
+      <h3>Companies in Haram Industries</h3>
+      <p>Investing in companies primarily involved in alcohol, gambling, pork, pornography, weapons manufacturing, or conventional financial services is haram.</p>
+
+      <div class="info-box warning">
+        <p><strong>🚫 Warning:</strong> Even if a haram investment generates significant returns, the income is considered impure and must not be consumed. It should be given away to charity without expecting reward.</p>
+      </div>
+
+      <h2>Conditional/Gray Area Investments</h2>
+      <ul>
+        <li><strong>Cryptocurrency:</strong> Conditionally halal if used properly (see our detailed article)</li>
+        <li><strong>Options and Futures:</strong> Generally considered haram due to gharar, though some structured products may be permissible</li>
+        <li><strong>REITs:</strong> Halal if the underlying properties and financing are Shariah-compliant</li>
+        <li><strong>Sukuk:</strong> Generally halal but must be properly structured — not all sukuk are truly Shariah-compliant</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>The key to halal investing is knowledge and intention. Educate yourself on the principles, screen your investments carefully, consult knowledgeable scholars when in doubt, and always prioritize the purity of your wealth over the size of your returns. Allah provides from sources we never expect.</p>
+    `,
+    references: [
+      "AAOIFI Shariah Standards — Complete Collection",
+      "Securities Commission Malaysia — Islamic Capital Market Guidelines",
+      "Dr. Muhammad Taqi Usmani — 'An Introduction to Islamic Finance'",
+      "Quran 2:275 and 2:278-279 — Prohibition of Riba"
+    ]
+  },
+  {
+    id: "islamic-banking-explained",
+    title: "How Islamic Banking Works: A Complete Overview",
+    description: "Understand the fundamental principles, products, and mechanisms that make Islamic banking different from conventional banking.",
+    category: "Banking & Loans",
+    author: "Dr. Fatima Hassan",
+    date: "June 22, 2025",
+    verdict: "Halal",
+    icon: "🏦",
+    content: `
+      <p>Islamic banking has grown into a multi-trillion dollar global industry, offering Muslims (and non-Muslims) an alternative to conventional interest-based banking. But how exactly does it work? This article explains the core concepts and products.</p>
+
+      <h2>Fundamental Principles</h2>
+      <p>Islamic banking operates on principles derived from the Quran and Sunnah:</p>
+      <ul>
+        <li><strong>Prohibition of Riba:</strong> No charging or paying interest</li>
+        <li><strong>Risk Sharing:</strong> The bank and customer share profits and losses</li>
+        <li><strong>Asset-Backed Transactions:</strong> Every transaction must be linked to a real asset</li>
+        <li><strong>Ethical Investment:</strong> Money cannot be used to finance harmful activities</li>
+        <li><strong>Transparency:</strong> All terms must be clear and agreed upon upfront</li>
+      </ul>
+
+      <h2>Key Islamic Banking Products</h2>
+
+      <h3>Mudarabah (Profit-Sharing)</h3>
+      <p>One party provides capital (the bank or depositor), while the other provides expertise and management. Profits are shared according to a pre-agreed ratio, but losses are borne by the capital provider only (unless due to negligence).</p>
+
+      <h3>Musharakah (Joint Venture)</h3>
+      <p>Both parties contribute capital and share profits and losses proportionally. This is considered the purest form of Islamic financing because both parties share risk equally.</p>
+
+      <h3>Murabaha (Cost-Plus Sale)</h3>
+      <p>The bank purchases an asset and sells it to the customer at a disclosed markup, payable in installments. The profit margin is fixed and known upfront — it is not interest because it involves a real sale.</p>
+
+      <h3>Ijara (Leasing)</h3>
+      <p>Similar to conventional leasing, the bank purchases an asset and leases it to the customer. The bank retains ownership and bears maintenance responsibilities. The lease can include an option to purchase at the end.</p>
+
+      <div class="info-box">
+        <p><strong>✅ Key Difference:</strong> The fundamental difference between Islamic and conventional banking is that Islamic banks must engage in real economic activity. They cannot simply lend money and charge interest — they must buy, sell, lease, or partner in actual assets and businesses.</p>
+      </div>
+
+      <h2>Islamic Bank Accounts</h2>
+
+      <h3>Current Accounts (Qard Hasan)</h3>
+      <p>These function like conventional checking accounts. The bank holds your money as a trust (amanah) or interest-free loan (qard). No interest is paid, but the bank may give voluntary gifts (hibah).</p>
+
+      <h3>Savings/Investment Accounts (Mudarabah)</h3>
+      <p>Your deposits are invested by the bank, and you share in the profits (or losses) according to a pre-agreed ratio. Unlike conventional savings accounts, the return is not guaranteed.</p>
+
+      <h2>Challenges and Criticisms</h2>
+      <p>Islamic banking is not without its critics. Some argue that certain products merely replicate conventional banking with different labels. Others point out that the profit rates often mirror interest rates. The industry continues to evolve, and scholars regularly review products for genuine compliance.</p>
+
+      <h2>Conclusion</h2>
+      <p>Islamic banking provides a viable alternative to conventional banking for those seeking to avoid riba. While not perfect, it represents a genuine effort to align financial services with Islamic principles. As the industry matures, products continue to become more innovative and authentically Shariah-compliant.</p>
+    `,
+    references: [
+      "Islamic Financial Services Board (IFSB) — Standards",
+      "Bank Negara Malaysia — Islamic Banking Guidelines",
+      "AAOIFI — Shariah Standards for Islamic Financial Institutions",
+      "Dr. Muhammad Taqi Usmani — 'An Introduction to Islamic Finance'"
+    ]
+  },
+  {
+    id: "insurance-takaful-guide",
+    title: "Is Insurance Haram? Understanding Takaful (Islamic Insurance)",
+    description: "Why conventional insurance is considered haram by most scholars and how Takaful provides a Shariah-compliant alternative.",
+    category: "Halal vs Haram",
+    author: "Sheikh Yusuf Ibrahim",
+    date: "July 8, 2025",
+    verdict: "Conditional",
+    icon: "🛡️",
+    content: `
+      <p>Insurance is a necessity in modern life — from health coverage to car insurance to protecting your home. But is conventional insurance permissible in Islam? And what is the alternative? Let's explore this important topic.</p>
+
+      <h2>Why Conventional Insurance is Problematic</h2>
+      <p>The majority of Islamic scholars consider conventional insurance haram due to three main issues:</p>
+
+      <h3>1. Gharar (Excessive Uncertainty)</h3>
+      <p>In a conventional insurance contract, you pay premiums but may never receive anything in return. Alternatively, you might receive far more than you paid. This uncertainty in the exchange is a form of gharar that invalidates the contract according to many scholars.</p>
+
+      <h3>2. Riba (Interest)</h3>
+      <p>Insurance companies invest premiums in interest-bearing instruments. The returns generated involve riba, tainting the entire arrangement.</p>
+
+      <h3>3. Maysir (Gambling)</h3>
+      <p>Some scholars argue that conventional insurance resembles gambling — you pay a small amount hoping to receive a large payout if a specific event occurs.</p>
+
+      <div class="info-box warning">
+        <p><strong>🚫 Scholarly Consensus:</strong> The Islamic Fiqh Academy of the OIC, in its resolution of 1985, declared conventional commercial insurance impermissible due to the presence of gharar, riba, and maysir.</p>
+      </div>
+
+      <h2>What is Takaful?</h2>
+      <p>Takaful is the Islamic alternative to conventional insurance. The word comes from the Arabic root "kafala," meaning to guarantee or take care of one another. It is based on the principles of mutual cooperation and shared responsibility.</p>
+
+      <h3>How Takaful Works</h3>
+      <ol>
+        <li>Participants contribute to a common pool (fund) with the intention of mutual assistance</li>
+        <li>The contributions are considered tabarru' (donations), eliminating gharar</li>
+        <li>Claims are paid from this pool</li>
+        <li>Surplus is distributed back to participants or donated to charity</li>
+        <li>The Takaful operator manages the fund for a fee (wakala) or share of profit (mudarabah)</li>
+      </ol>
+
+      <div class="info-box">
+        <p><strong>✅ Key Difference:</strong> In Takaful, participants are helping each other, not buying a product from a company. The relationship is cooperative, not commercial. This eliminates the gharar and maysir concerns.</p>
+      </div>
+
+      <h2>Types of Takaful</h2>
+      <ul>
+        <li><strong>Family Takaful:</strong> Equivalent to life insurance and savings plans</li>
+        <li><strong>General Takaful:</strong> Covers motor, health, property, and other general insurance needs</li>
+        <li><strong>Re-Takaful:</strong> Takaful for Takaful operators (equivalent to reinsurance)</li>
+      </ul>
+
+      <h2>When Conventional Insurance May Be Permitted</h2>
+      <p>In situations where Takaful is unavailable and insurance is legally required (such as car insurance in many countries), some scholars allow conventional insurance under the principle of necessity (darurah). However, one should use only the minimum required coverage and actively seek Takaful alternatives.</p>
+
+      <h2>Conclusion</h2>
+      <p>While conventional insurance is considered haram by the majority of scholars, Takaful provides a genuine Shariah-compliant alternative. Muslims should seek out Takaful providers where available and advocate for the growth of this important industry.</p>
+    `,
+    references: [
+      "Islamic Fiqh Academy (OIC) — Resolution on Insurance (1985)",
+      "AAOIFI Shariah Standard No. 26 — Islamic Insurance",
+      "Malaysian Takaful Association Guidelines",
+      "Dr. Engku Rabiah — 'Takaful: Principles and Practice'"
+    ]
+  },
+  {
+    id: "forex-trading-ruling",
+    title: "Is Forex Trading Halal? The Islamic Ruling Explained",
+    description: "An in-depth look at currency trading in Islam — when it's permissible, when it's not, and the conditions scholars have set.",
+    category: "Investments",
+    author: "Dr. Ahmed Al-Rashid",
+    date: "August 14, 2025",
+    verdict: "Conditional",
+    icon: "💱",
+    content: `
+      <p>Foreign exchange (forex) trading is the largest financial market in the world, with over $6 trillion traded daily. Many Muslims are drawn to forex trading for its accessibility and potential profitability. But what does Islam say about it?</p>
+
+      <h2>Currency Exchange in Islamic Law</h2>
+      <p>Islam permits currency exchange — the Prophet (peace be upon him) explicitly allowed it. However, he set strict conditions based on the hadith known as the "hadith of the six commodities":</p>
+
+      <blockquote>"Gold for gold, silver for silver, wheat for wheat... like for like, equal for equal, hand to hand. If the types differ, then sell however you like, provided it is hand to hand." — Sahih Muslim</blockquote>
+
+      <h2>Conditions for Halal Forex Trading</h2>
+      <p>Based on scholarly analysis, forex trading may be permissible under the following conditions:</p>
+
+      <h3>1. Immediate Exchange (Taqabud)</h3>
+      <p>When exchanging different currencies, the transaction must be settled immediately. In modern terms, this means spot transactions that settle within the standard T+2 settlement period are generally acceptable. Forward contracts and futures on currencies are not permitted.</p>
+
+      <h3>2. No Swap or Overnight Interest</h3>
+      <p>Conventional forex accounts charge or pay "swap" fees for holding positions overnight. This is essentially interest and is haram. Muslim traders must use "Islamic forex accounts" or "swap-free accounts" that do not charge overnight interest.</p>
+
+      <h3>3. No Excessive Leverage</h3>
+      <p>Most forex brokers offer extreme leverage (100:1 or even 500:1). This creates excessive risk and uncertainty (gharar). While some leverage may be permissible, extreme leverage resembles gambling.</p>
+
+      <div class="info-box caution">
+        <p><strong>⚠ Important:</strong> Using 100:1 leverage means a 1% move against you wipes out your entire investment. This level of risk is akin to gambling (maysir) and should be avoided. Scholars recommend using minimal leverage or none at all.</p>
+      </div>
+
+      <h2>What Makes Forex Trading Haram?</h2>
+      <ul>
+        <li>Using conventional accounts with swap/rollover interest</li>
+        <li>Excessive leverage that makes it akin to gambling</li>
+        <li>Trading currency futures or options</li>
+        <li>Pure speculation without any analysis or strategy</li>
+        <li>Trading with money you cannot afford to lose</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>Forex trading is conditionally halal when conducted through Islamic accounts, with minimal leverage, based on analysis rather than speculation, and using spot transactions. Muslims interested in forex should educate themselves thoroughly and ensure every aspect of their trading complies with Shariah principles.</p>
+    `,
+    references: [
+      "Sahih Muslim — Hadith on Currency Exchange",
+      "Islamic Fiqh Academy — Resolution on Currency Trading",
+      "Dr. Monzer Kahf — Fatwa on Forex Trading",
+      "AAOIFI Shariah Standards on Trading"
+    ]
+  },
+  {
+    id: "credit-cards-islamic-ruling",
+    title: "Are Credit Cards Halal? What Every Muslim Should Know",
+    description: "The nuanced ruling on using credit cards — when it becomes haram and how to use them in a Shariah-compliant way.",
+    category: "Banking & Loans",
+    author: "Dr. Fatima Hassan",
+    date: "September 2, 2025",
+    verdict: "Conditional",
+    icon: "💳",
+    content: `
+      <p>Credit cards are ubiquitous in modern life. From online shopping to hotel bookings to building a credit score — they seem almost essential. But for Muslims, the question remains: can we use credit cards without falling into riba?</p>
+
+      <h2>The Core Issue: Interest</h2>
+      <p>The fundamental concern with credit cards is the interest charged on unpaid balances. When you don't pay your full balance by the due date, the bank charges interest on the remaining amount. This interest is riba — and it is unquestionably haram.</p>
+
+      <h2>When Credit Cards Are Permissible</h2>
+      <p>Many scholars permit the use of credit cards under strict conditions:</p>
+
+      <h3>1. Full Monthly Payment</h3>
+      <p>If you pay your entire balance before the due date every single month, you never incur interest charges. In this case, the credit card functions essentially as a deferred payment tool — which is permissible.</p>
+
+      <h3>2. No Cash Advances</h3>
+      <p>Cash advances on credit cards almost always incur immediate interest charges with no grace period. These should be completely avoided.</p>
+
+      <h3>3. Annual Fees Are Acceptable</h3>
+      <p>A fixed annual fee for the card is considered a service fee (ujrah), not interest. This is permissible according to most scholars.</p>
+
+      <div class="info-box">
+        <p><strong>✅ The Key Rule:</strong> A credit card is merely a tool. If you use it as a convenient payment method and always pay in full, it is permissible. The moment you carry a balance and pay interest, it becomes haram.</p>
+      </div>
+
+      <h2>Islamic Credit Cards</h2>
+      <p>Several Islamic banks offer Shariah-compliant credit cards that operate differently:</p>
+      <ul>
+        <li><strong>Bai' al-Inah:</strong> The bank sells an asset to you on credit and buys it back for less — generating the credit line</li>
+        <li><strong>Tawarruq:</strong> Similar concept using commodity trading</li>
+        <li><strong>Ujrah (Fee-based):</strong> The bank charges a fixed fee instead of interest</li>
+        <li><strong>Charge Cards:</strong> No credit extended — must pay in full each month</li>
+      </ul>
+
+      <div class="info-box caution">
+        <p><strong>⚠ Caution:</strong> Not all "Islamic credit cards" are truly Shariah-compliant. Some replicate interest under different names. Research the specific structure and check if it has Shariah board approval.</p>
+      </div>
+
+      <h2>Conclusion</h2>
+      <p>Credit cards are conditionally permissible in Islam. The condition is clear and non-negotiable: you must never pay interest. Use credit cards as a payment convenience, not as a borrowing tool. Those who lack the discipline to pay in full each month should avoid credit cards entirely and use debit cards instead.</p>
+    `,
+    references: [
+      "Islamic Fiqh Academy — Resolution on Credit Cards",
+      "Dr. Wahbah al-Zuhayli — 'Financial Transactions in Islamic Jurisprudence'",
+      "AAOIFI Shariah Standard No. 2 — Debit and Credit Cards",
+      "Mufti Taqi Usmani — Fatwa on Credit Card Usage"
     ]
   }
 ];
 
-/* ============================================
-   UTILITY FUNCTIONS
-   ============================================ */
+// ---- Verdict helpers ----
 function getVerdictClass(verdict) {
-  const map = {
-    'Halal': 'verdict-badge--halal',
-    'Haram': 'verdict-badge--haram',
-    'Conditional': 'verdict-badge--conditional'
-  };
-  return map[verdict] || 'verdict-badge--conditional';
+  const v = verdict.toLowerCase();
+  if (v === 'halal') return 'halal';
+  if (v === 'haram') return 'haram';
+  return 'conditional';
 }
 
 function getVerdictIcon(verdict) {
-  const map = {
-    'Halal': '✓',
-    'Haram': '✗',
-    'Conditional': '~'
-  };
-  return map[verdict] || '~';
+  const v = verdict.toLowerCase();
+  if (v === 'halal') return '✅';
+  if (v === 'haram') return '🚫';
+  return '⚠️';
 }
 
-function getArticleById(id) {
-  return articles.find(a => a.id === id) || null;
+// ---- WhatsApp CTA helper ----
+const WA_LINK = 'https://wa.me/917824023183?text=Assalamu%20Alaikum%2C%20I%20need%20guidance%20regarding%20halal%20finance.';
+
+// ---- Hadith Overlay ----
+function initHadithOverlay() {
+  const overlay = document.getElementById('hadith-overlay');
+  if (!overlay) return;
+
+  // Pick random hadith
+  const hadith = hadiths[Math.floor(Math.random() * hadiths.length)];
+  const textEl = document.getElementById('hadith-text');
+  const sourceEl = document.getElementById('hadith-source');
+  const enterBtn = document.getElementById('hadith-enter-btn');
+
+  if (textEl) textEl.textContent = `"${hadith.text}"`;
+  if (sourceEl) sourceEl.textContent = `— ${hadith.source}`;
+
+  // Prevent body scroll while overlay is showing
+  document.body.style.overflow = 'hidden';
+
+  if (enterBtn) {
+    enterBtn.addEventListener('click', () => {
+      overlay.classList.add('hide');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 700);
+    });
+  }
 }
 
-function getRelatedArticles(currentId, category, limit = 4) {
-  return articles
-    .filter(a => a.id !== currentId && a.category === category)
-    .slice(0, limit)
-    .concat(
-      articles.filter(a => a.id !== currentId && a.category !== category)
-    )
-    .slice(0, limit);
-}
+// ---- Card Rendering ----
+function createArticleCard(article) {
+  const card = document.createElement('a');
+  card.href = `article.html?id=${article.id}`;
+  card.className = 'article-card fade-in-up';
 
-function getURLParam(param) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(param);
-}
-
-function formatInitials(name) {
-  return name.split(' ').filter(w => w.match(/^[A-Z]/)).map(w => w[0]).join('').slice(0, 2);
-}
-
-/* ============================================
-   CARD RENDERING
-   ============================================ */
-function renderVerdictBadge(verdict, size = 'sm') {
-  return `<span class="verdict-badge ${getVerdictClass(verdict)}">
-    <span class="badge-dot"></span>
-    ${verdict}
-  </span>`;
-}
-
-function renderCategoryTag(category) {
-  return `<span class="category-tag">${category}</span>`;
-}
-
-function renderAuthorAvatar(initials) {
-  return `<div class="card-author-avatar">${initials}</div>`;
-}
-
-function renderFeaturedCard(article, isMain = false) {
-  return `
-    <div class="featured-card ${isMain ? 'featured-card--main' : ''}" 
-         onclick="navigateToArticle('${article.id}')"
-         role="article" tabindex="0"
-         onkeydown="if(event.key==='Enter') navigateToArticle('${article.id}')">
-      <div class="featured-card-image">
-        <div class="card-image-pattern">${article.icon}</div>
-        <div class="card-image-overlay">
-          ${renderVerdictBadge(article.verdict)}
-        </div>
+  card.innerHTML = `
+    <div class="article-card-image">
+      <span class="card-icon">${article.icon}</span>
+      <div class="card-image-label">
+        <span class="verdict-badge ${getVerdictClass(article.verdict)}">${getVerdictIcon(article.verdict)} ${article.verdict}</span>
       </div>
-      <div class="featured-card-body">
-        <div class="featured-card-meta">
-          ${renderCategoryTag(article.category)}
-          <span class="card-read-time">⏱ ${article.readTime}</span>
-        </div>
-        <h3 class="featured-card-title">${article.title}</h3>
-        <p class="featured-card-desc">${article.description}</p>
-        <div class="featured-card-footer">
-          <div class="card-author">
-            ${renderAuthorAvatar(article.authorInitials)}
-            <span class="card-author-name">${article.author}</span>
-          </div>
-          <span class="card-date">${article.date}</span>
-        </div>
+    </div>
+    <div class="article-card-body">
+      <div class="card-meta">
+        <span class="card-category">${article.category}</span>
+        <span class="card-date">${article.date}</span>
+      </div>
+      <h3>${article.title}</h3>
+      <p>${article.description}</p>
+      <div class="card-footer">
+        <span class="card-author">${article.author}</span>
+        <span class="card-read-more">Read More <span class="arrow">→</span></span>
       </div>
     </div>
   `;
+
+  return card;
 }
 
-function renderArticleCard(article) {
-  return `
-    <div class="article-card" 
-         onclick="navigateToArticle('${article.id}')"
-         role="article" tabindex="0"
-         onkeydown="if(event.key==='Enter') navigateToArticle('${article.id}')">
-      <div class="article-card-image">
-        <span class="icon">${article.icon}</span>
-        <div class="article-card-image-overlay">
-          ${renderVerdictBadge(article.verdict)}
-        </div>
-      </div>
-      <div class="article-card-body">
-        <div class="article-card-meta">
-          ${renderCategoryTag(article.category)}
-        </div>
-        <h3 class="article-card-title">${article.title}</h3>
-        <p class="article-card-desc">${article.description}</p>
-        <div class="article-card-footer">
-          <div class="card-author">
-            ${renderAuthorAvatar(article.authorInitials)}
-            <span class="card-author-name">${article.author}</span>
-          </div>
-          <span class="card-read-time">⏱ ${article.readTime}</span>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-/* ============================================
-   NAVIGATION
-   ============================================ */
-function navigateToArticle(id) {
-  window.location.href = `article.html?id=${id}`;
-}
-
-/* ============================================
-   HOMEPAGE — INIT
-   ============================================ */
-function initHomepage() {
-  renderFeaturedSection();
-  renderCategorySection();
-  renderLatestArticles();
-  initFilters();
-  initNavbar();
-  initScrollAnimations();
-  initNewsletter();
-  updateHeroStats();
-}
-
-function updateHeroStats() {
-  const statEl = document.getElementById('stat-articles');
-  if (statEl) statEl.textContent = articles.length + '+';
-}
-
-function renderFeaturedSection() {
+// ---- Homepage Rendering ----
+function renderFeaturedArticles() {
   const container = document.getElementById('featured-articles');
   if (!container) return;
-
-  const featured = articles.filter(a => a.featured).slice(0, 3);
-  const rest = articles.filter(a => !a.featured).slice(0, 2);
-  const display = featured.length >= 3 ? featured : [...featured, ...rest].slice(0, 3);
-
-  if (display.length === 0) return;
-
-  const [main, ...secondary] = display;
-
-  container.innerHTML = `
-    ${renderFeaturedCard(main, true)}
-    ${secondary.map(a => renderFeaturedCard(a, false)).join('')}
-  `;
+  articles.slice(0, 3).forEach(article => container.appendChild(createArticleCard(article)));
 }
 
-let currentFilter = 'All';
-let visibleCount = 6;
-const PAGE_SIZE = 6;
-
-function renderLatestArticles(filter = 'All') {
-  const container = document.getElementById('articles-grid');
-  const loadMoreBtn = document.getElementById('load-more-btn');
+function renderLatestArticles() {
+  const container = document.getElementById('latest-articles');
   if (!container) return;
-
-  const filtered = filter === 'All'
-    ? articles
-    : articles.filter(a => a.category === filter || a.verdict === filter);
-
-  const visible = filtered.slice(0, visibleCount);
-
-  if (visible.length === 0) {
-    container.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--color-text-muted);">
-        <div style="font-size: 3rem; margin-bottom: 16px;">🔍</div>
-        <p>No articles found in this category yet. Check back soon!</p>
-      </div>
-    `;
-    if (loadMoreBtn) loadMoreBtn.style.display = 'none';
-    return;
-  }
-
-  container.innerHTML = visible.map(renderArticleCard).join('');
-
-  if (loadMoreBtn) {
-    loadMoreBtn.style.display = filtered.length > visibleCount ? 'inline-block' : 'none';
-  }
+  articles.forEach(article => container.appendChild(createArticleCard(article)));
 }
 
-function initFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.dataset.filter;
-      visibleCount = PAGE_SIZE;
-      renderLatestArticles(currentFilter);
-    });
-  });
-
-  const loadMoreBtn = document.getElementById('load-more-btn');
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      visibleCount += PAGE_SIZE;
-      renderLatestArticles(currentFilter);
-    });
-  }
-}
-
-function renderCategorySection() {
+function renderCategories() {
   const container = document.getElementById('categories-grid');
   if (!container) return;
 
   const categories = [
-    { name: 'Halal vs Haram', icon: '⚖️', color: '#1a4731' },
-    { name: 'Investments', icon: '📈', color: '#2d6a4f' },
-    { name: 'Banking & Loans', icon: '🏦', color: '#1a4731' },
-    { name: 'Crypto', icon: '₿', color: '#0f2d1f' },
-    { name: 'Zakat & Charity', icon: '🕌', color: '#2d6a4f' }
+    { name: "Halal vs Haram", icon: "⚖️", desc: "Clear rulings" },
+    { name: "Investments", icon: "📈", desc: "Grow your wealth" },
+    { name: "Banking & Loans", icon: "🏦", desc: "Halal banking" },
+    { name: "Crypto", icon: "₿", desc: "Digital assets" },
+    { name: "Zakat & Charity", icon: "🤲", desc: "Give back" }
   ];
 
-  container.innerHTML = categories.map(cat => {
+  categories.forEach(cat => {
     const count = articles.filter(a => a.category === cat.name).length;
-    return `
-      <div class="category-card" onclick="filterByCategory('${cat.name}')" 
-           role="button" tabindex="0"
-           onkeydown="if(event.key==='Enter') filterByCategory('${cat.name}')">
-        <span class="category-card-icon">${cat.icon}</span>
-        <div class="category-card-name">${cat.name}</div>
-        <div class="category-card-count">${count} article${count !== 1 ? 's' : ''}</div>
-      </div>
+    const card = document.createElement('div');
+    card.className = 'category-card fade-in-up';
+    card.innerHTML = `
+      <span class="category-icon">${cat.icon}</span>
+      <h3>${cat.name}</h3>
+      <p class="cat-count">${count} article${count !== 1 ? 's' : ''}</p>
     `;
-  }).join('');
-}
-
-function filterByCategory(category) {
-  const section = document.getElementById('latest-section');
-  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  setTimeout(() => {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.filter === category);
+    card.addEventListener('click', () => {
+      document.getElementById('latest')?.scrollIntoView({ behavior: 'smooth' });
     });
-    currentFilter = category;
-    visibleCount = PAGE_SIZE;
-    renderLatestArticles(currentFilter);
-  }, 300);
-}
-
-/* ============================================
-   NAVBAR
-   ============================================ */
-function initNavbar() {
-  const navbar = document.querySelector('.navbar');
-  const hamburger = document.querySelector('.nav-hamburger');
-  const navLinks = document.querySelector('.nav-links');
-
-  if (navbar) {
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-  }
-
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
-      }
-    });
-  }
-}
-
-/* ============================================
-   SCROLL ANIMATIONS
-   ============================================ */
-function initScrollAnimations() {
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  if (!elements.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  elements.forEach(el => observer.observe(el));
-}
-
-/* ============================================
-   NEWSLETTER
-   ============================================ */
-function initNewsletter() {
-  const form = document.getElementById('newsletter-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const input = form.querySelector('input');
-    const btn = form.querySelector('button');
-    if (!input.value.trim()) return;
-
-    btn.textContent = 'Subscribed! ✓';
-    btn.style.background = '#10b981';
-    input.value = '';
-    input.disabled = true;
-    btn.disabled = true;
-
-    setTimeout(() => {
-      btn.textContent = 'Subscribe';
-      btn.style.background = '';
-      input.disabled = false;
-      btn.disabled = false;
-    }, 4000);
+    container.appendChild(card);
   });
 }
 
-/* ============================================
-   ARTICLE PAGE — INIT
-   ============================================ */
-function initArticlePage() {
-  const id = getURLParam('id');
-  const container = document.getElementById('article-container');
-  if (!container) return;
+// ---- Article Page ----
+function getArticleIdFromURL() {
+  return new URLSearchParams(window.location.search).get('id');
+}
 
-  if (!id) {
-    renderNotFound(container);
-    return;
-  }
+function renderArticlePage() {
+  const headerEl = document.getElementById('article-header');
+  const contentEl = document.getElementById('article-content');
+  const referencesEl = document.getElementById('article-references');
+  const relatedEl = document.getElementById('related-articles');
+  const notFoundEl = document.getElementById('not-found');
+  const articlePageEl = document.getElementById('article-page-content');
+  const articleCtaEl = document.getElementById('article-cta');
 
-  const article = getArticleById(id);
+  if (!headerEl) return;
+
+  const id = getArticleIdFromURL();
+  const article = articles.find(a => a.id === id);
+
   if (!article) {
-    renderNotFound(container);
+    if (articlePageEl) articlePageEl.style.display = 'none';
+    if (articleCtaEl) articleCtaEl.style.display = 'none';
+    if (notFoundEl) notFoundEl.style.display = 'block';
     return;
   }
 
   document.title = `${article.title} — Halal Finance Hub`;
 
-  const related = getRelatedArticles(article.id, article.category, 4);
-  container.innerHTML = renderArticleDetail(article, related);
+  const authorInitials = article.author.split(' ').map(n => n[0]).join('').slice(0, 2);
 
-  initNavbar();
-  initScrollAnimations();
-  updateMetaTags(article);
-}
-
-function renderArticleDetail(article, related) {
-  return `
-    <div class="article-page fade-in">
-      <a href="index.html" class="back-btn">
-        ← Back to Home
-      </a>
-
-      <div class="article-category-line">
-        ${renderCategoryTag(article.category)}
-        ${article.tags ? article.tags.map(t => `<span class="category-tag" style="opacity:0.6">${t}</span>`).join('') : ''}
-      </div>
-
-      <h1 class="article-title">${article.title}</h1>
-
-      <div class="article-byline">
-        <div class="article-byline-avatar">${article.authorInitials}</div>
-        <div class="article-byline-info">
-          <div class="article-byline-author">${article.author}</div>
-          <div class="article-byline-meta">${article.date} · ${article.readTime}</div>
+  headerEl.innerHTML = `
+    <a href="index.html" class="article-back">
+      <span class="back-arrow">←</span> Back to Home
+    </a>
+    <span class="card-category">${article.category}</span>
+    <h1>${article.title}</h1>
+    <div class="article-meta-bar">
+      <div class="article-author-info">
+        <div class="author-avatar">${authorInitials}</div>
+        <div class="author-details">
+          <div class="author-name">${article.author}</div>
+          <div class="article-date">${article.date}</div>
         </div>
-        <span class="verdict-badge ${getVerdictClass(article.verdict)} article-verdict-large">
-          <span class="badge-dot"></span>
-          Verdict: ${article.verdict}
-        </span>
       </div>
-
-      <div class="article-content">
-        ${article.content}
-      </div>
-
-      ${article.references && article.references.length ? `
-        <div class="references-section">
-          <h2 class="references-title">📚 References & Sources</h2>
-          <div class="references-list">
-            ${article.references.map((ref, i) => `
-              <div class="reference-item">
-                <div class="reference-num">${i + 1}</div>
-                <div class="reference-text">${ref}</div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      ` : ''}
-
-      ${related.length ? `
-        <div class="related-section">
-          <h2 class="related-title">Continue Reading</h2>
-          <div class="related-grid">
-            ${related.map(a => `
-              <div class="related-card" onclick="navigateToArticle('${a.id}')" 
-                   role="link" tabindex="0"
-                   onkeydown="if(event.key==='Enter') navigateToArticle('${a.id}')">
-                <div class="related-card-icon">${a.icon}</div>
-                <div>
-                  <div class="related-card-title">${a.title}</div>
-                  <div class="related-card-meta">
-                    ${a.category} · ${a.readTime}
-                    &nbsp;&nbsp;${renderVerdictBadge(a.verdict)}
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      ` : ''}
+      <span class="verdict-badge verdict-badge-lg ${getVerdictClass(article.verdict)}">${getVerdictIcon(article.verdict)} ${article.verdict}</span>
     </div>
   `;
-}
 
-function renderNotFound(container) {
-  container.innerHTML = `
-    <div class="not-found">
-      <div class="not-found-icon">📄</div>
-      <h2>Article Not Found</h2>
-      <p>The article you're looking for doesn't exist or may have been moved.</p>
-      <a href="index.html" class="btn btn-primary" style="display:inline-flex; margin:0 auto;">
-        ← Return to Homepage
-      </a>
-    </div>
-  `;
-}
+  contentEl.innerHTML = article.content;
 
-function updateMetaTags(article) {
-  let metaDesc = document.querySelector('meta[name="description"]');
-  if (!metaDesc) {
-    metaDesc = document.createElement('meta');
-    metaDesc.name = 'description';
-    document.head.appendChild(metaDesc);
+  if (article.references && article.references.length > 0) {
+    let refHTML = '<h3>References & Sources</h3><ol class="references-list">';
+    article.references.forEach(ref => { refHTML += `<li>${ref}</li>`; });
+    refHTML += '</ol>';
+    referencesEl.innerHTML = refHTML;
   }
-  metaDesc.content = article.description;
+
+  // Related articles
+  if (relatedEl) {
+    const relatedGrid = relatedEl.querySelector('.related-grid');
+    if (relatedGrid) {
+      const related = articles
+        .filter(a => a.id !== article.id)
+        .sort((a, b) => (a.category === article.category ? -1 : 1) - (b.category === article.category ? -1 : 1))
+        .slice(0, 3);
+      related.forEach(a => relatedGrid.appendChild(createArticleCard(a)));
+    }
+  }
 }
 
-/* ============================================
-   PAGE DETECTION & INIT
-   ============================================ */
+// ---- Mobile Nav ----
+function initMobileNav() {
+  const toggle = document.querySelector('.navbar-toggle');
+  const links = document.querySelector('.navbar-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  }
+}
+
+// ---- Smooth Scroll ----
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelector('.navbar-links')?.classList.remove('open');
+      }
+    });
+  });
+}
+
+// ---- Scroll Animations ----
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in-up').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+}
+
+// ---- Initialize ----
 document.addEventListener('DOMContentLoaded', () => {
-  const isArticlePage = document.body.classList.contains('article-page-body')
-    || document.getElementById('article-container') !== null;
-
-  if (isArticlePage) {
-    initArticlePage();
-  } else {
-    initHomepage();
+  // Hadith overlay (homepage only)
+  if (document.getElementById('hadith-overlay')) {
+    initHadithOverlay();
   }
+
+  // Homepage
+  renderFeaturedArticles();
+  renderCategories();
+  renderLatestArticles();
+
+  // Article page
+  renderArticlePage();
+
+  // Common
+  initMobileNav();
+  initSmoothScroll();
+
+  setTimeout(initScrollAnimations, 100);
 });

@@ -1,6 +1,8 @@
 /* ============================================
-   HALAL FINANCE HUB — JavaScript (Premium)
+   FALAH FINANCE — JavaScript (Premium)
    ============================================ */
+
+const GOOGLE_SHEETS_WEB_APP_URL = '';
 
 // ---- Hadith Data ----
 const hadiths = [
@@ -638,9 +640,6 @@ function getVerdictIcon(verdict) {
   return '⚠️';
 }
 
-// ---- WhatsApp CTA helper ----
-const WA_LINK = 'https://wa.me/917824023183?text=Assalamu%20Alaikum%2C%20I%20need%20guidance%20regarding%20halal%20finance.';
-
 // ---- Hadith Overlay ----
 function initHadithOverlay() {
   const overlay = document.getElementById('hadith-overlay');
@@ -766,7 +765,7 @@ function renderArticlePage() {
     return;
   }
 
-  document.title = `${article.title} — Halal Finance Hub`;
+  document.title = `${article.title} — Falah Finance`;
 
   const authorInitials = article.author.split(' ').map(n => n[0]).join('').slice(0, 2);
 
@@ -833,6 +832,69 @@ function initSmoothScroll() {
   });
 }
 
+// ---- Google Sheets Lead Forms ----
+function getLeadField(formData, names) {
+  for (const name of names) {
+    const value = formData.get(name);
+    if (value) return String(value).trim();
+  }
+  return '';
+}
+
+function buildLeadPayload(form) {
+  const formData = new FormData(form);
+  return {
+    Name: getLeadField(formData, ['Name', 'name', 'fullName', 'full-name']),
+    Phone: getLeadField(formData, ['Phone', 'phone', 'mobile']),
+    Email: getLeadField(formData, ['Email', 'email']),
+    Service: getLeadField(formData, ['Service', 'service']) || form.dataset.service || form.getAttribute('aria-label') || 'Website form',
+    Requirements: getLeadField(formData, ['Requirements', 'requirements', 'message', 'notes', 'details']),
+    Timestamp: new Date().toISOString()
+  };
+}
+
+async function submitLeadToGoogleSheets(payload) {
+  if (!GOOGLE_SHEETS_WEB_APP_URL) {
+    throw new Error('Google Sheets web app URL is not configured.');
+  }
+
+  await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  });
+}
+
+function initLeadForms() {
+  document.querySelectorAll('form:not([data-no-leads])').forEach(form => {
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('[type="submit"]');
+      const originalText = submitButton ? submitButton.textContent : '';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+      }
+
+      try {
+        await submitLeadToGoogleSheets(buildLeadPayload(form));
+        form.reset();
+        form.dispatchEvent(new CustomEvent('lead:success', { bubbles: true }));
+      } catch (error) {
+        console.error(error);
+        form.dispatchEvent(new CustomEvent('lead:error', { bubbles: true }));
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      }
+    });
+  });
+}
+
 // ---- Scroll Animations ----
 function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
@@ -868,6 +930,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Common
   initMobileNav();
   initSmoothScroll();
+  initLeadForms();
 
   setTimeout(initScrollAnimations, 100);
 });

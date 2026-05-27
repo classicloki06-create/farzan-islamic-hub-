@@ -372,20 +372,11 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
 }
 
-.logo-icon {
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: 1px solid rgba(18,61,49,0.22);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--clr-primary);
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 700;
-  flex-shrink: 0;
+.logo-img {
+  height: 34px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .navbar-links {

@@ -858,12 +858,13 @@ async function submitLeadToGoogleSheets(payload) {
     throw new Error('Google Sheets web app URL is not configured.');
   }
 
-  await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload)
-  });
+await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(payload)
+});
 }
 
 function initLeadForms() {

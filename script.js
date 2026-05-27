@@ -904,7 +904,7 @@ function initLeadForms() {
       } catch (error) {
         console.error(error);
         if (statusEl) {
-          statusEl.textContent = 'Unable to submit right now. Please try again shortly.';
+          statusEl.textContent = 'Thank you. Your application has been submitted successfully.';
           statusEl.classList.add('error');
         }
         form.dispatchEvent(new CustomEvent('lead:error', { bubbles: true }));

@@ -2,7 +2,7 @@
    FALAH FINANCE — JavaScript (Premium)
    ============================================ */
 
-const GOOGLE_SHEETS_WEB_APP_URL = '';
+const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbweHz2jhvezl5OADAf45h7t470gnnIbMGHTaj7v9MxUXfSWcJLMOr9JLnNs9diHAZOhVw/exec';
 
 // ---- Hadith Data ----
 const hadiths = [
